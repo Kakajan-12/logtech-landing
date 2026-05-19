@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/nexa-bold/NexaLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/nexa-bold/NexaBold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vox";
+  src: url("/fonts/Vox-Regular/Vox-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --border: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --color-light-blue: #f4f9ff;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-brand: #0044e1;
+  --color-brand-blue: #0044e11a;
+  --color-light-blue: var(--color-light-blue);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-nexa: "Nexa", ui-sans-serif, system-ui, sans-serif;
+  --font-vox: "Vox", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-nexa), system-ui, sans-serif;
+}
+
+.image-partner {
+  clip-path: polygon(75% 0, 100% 25%, 100% 100%, 0 100%, 0 0);
+  border-radius: 8px;
+}
+
+.partners-marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0;
+  width: max-content;
+  animation: partners-marquee 50s linear infinite;
+}
+
+.partners-marquee-group {
+  flex-shrink: 0;
+  align-items: center;
+}
+
+@keyframes partners-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1.5rem;
+  }
+
+  .partners-marquee-group--duplicate {
+    display: none;
+  }
+}
+
+.footer-bg-pattern {
+  pointer-events: none;
+  margin-bottom: 43px;
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  opacity: 0.1;
+  background-image: var(--footer-bg-url);
+  background-size: var(--footer-bg-cell) var(--footer-bg-cell);
+  --footer-bg-cell: 45px;
+}
+
+@media (min-width: 640px) {
+  .footer-bg-pattern {
+    --footer-bg-cell: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-bg-pattern {
+    --footer-bg-cell: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-bg-pattern {
+    --footer-bg-cell: 52px;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer-bg-pattern {
+    --footer-bg-cell: 56px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .footer-bg-pattern {
+    --footer-bg-cell: 72px;
+  }
+}
+
+.image-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 400px;
+  grid-auto-flow: column;
+}
+.logo-spin {
+  animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

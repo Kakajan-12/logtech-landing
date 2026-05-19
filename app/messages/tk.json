@@ -1,0 +1,233 @@
+{
+  "Header": {
+    "phone": "+993 71 387778",
+    "email": "info@hebent.tech",
+    "nav": {
+      "benefits": "Peýdalar",
+      "industry": "Pudaklar",
+      "solutions": "Çözgütler",
+      "partners": "Hyzmatdaşlar",
+      "contacts": "Kontaktlar"
+    },
+    "getDemo": "Demo",
+    "brand": "HEBENT LOGTECH",
+    "openMenu": "Menýüni aç",
+    "closeMenu": "Menýüni ýap",
+    "language": "Dil",
+    "langNames": {
+      "en": "EN",
+      "ru": "RU",
+      "tk": "TK"
+    }
+  },
+  "Main": {
+    "title": "Awtoulagyňyz üstünde doly gözegçilik — hakyky wagtda",
+    "description": "Ulag serişdelerini gözegçilik ediň, ugurlary optimizasiýa ediň we GPS platformamyz bilen çykdajylary azadyň. Awtoulag işlerine doly görüş.",
+    "watchVideo": "Wideony gör",
+    "getDemo": "Demo",
+    "bullets": {
+      "support": "Aşgabatda tehniki goldaw",
+      "brands": "40+ enjam markasy",
+      "api": "Enterprise API taýýar"
+    }
+  },
+  "WhyLoseMoney": {
+    "title": "Kompaniýalar pul näme üçin ýitirýär",
+    "cards": {
+      "fuel": {
+        "title": "Ýangyjyň çykdajylary yzygider artýar",
+        "items": {
+          "0": "Ýangyjyň sarpawyna gözegçilik",
+          "1": "Artan syýahatlary anyklamak",
+          "2": "Ugurlary optimizasiýa etmek"
+        }
+      },
+      "control": {
+        "title": "Ulag serişdelerine gözegçilik ýok",
+        "items": {
+          "0": "Ähli awtoulaglaryň kartadaky ýerleşişi",
+          "1": "Ugur we duraklara gözegçilik",
+          "2": "Ugurdan çykylan halda habarnamalar"
+        }
+      },
+      "drivers": {
+        "title": "Sürüjileriň işine çydamlylyk ýok",
+        "items": {
+          "0": "Sürüjileriň işine gözegçilik",
+          "1": "Ulagyň tizligine gözegçilik",
+          "2": "Işçileriň tertibini güýçlendirmek"
+        }
+      },
+      "analytics": {
+        "title": "Awtoulagy seljermek kyn",
+        "items": {
+          "0": "Awtomatiki hasabatlar",
+          "1": "Syýahat we ýol hasabynyň analitikasy",
+          "2": "Ulagyň netijeliligine gözegçilik"
+        }
+      }
+    }
+  },
+  "Advantages": {
+    "title": "Biz bu meseleleriň ählisini çözýäris",
+    "subtitle": "Her mesele — anyk gural bilen ýapylyar",
+    "painColumn": "Müşderiniň agyrysy",
+    "solutionColumn": "Bizim çözgüdümiz",
+    "rows": {
+      "fuel": {
+        "painTitle": "Ýangyjy",
+        "painDescription": "Çykdajylar yzygider artýar — hiç kim sarpawy we ugurlary dolandyrmaýar",
+        "solutionTitle": "Sarpawa gözegçilik",
+        "solutionDescription": "Onlaýn sarpaw gözegçiligi, artan syýahatlary anyklamak, ugurlary optimizasiýa etmek"
+      },
+      "transport": {
+        "painTitle": "Ulag",
+        "painDescription": "Awtoulaglaryň nirede, ugura laýyklygy we çykylanlygy düşnükli däl",
+        "solutionTitle": "GPS we karta",
+        "solutionDescription": "Ähli awtoulaglar kartada wagtlaýyn, ugura gözegçilik we habarnamalar"
+      },
+      "drivers": {
+        "painTitle": "Sürüjiler",
+        "painDescription": "Işe çydamlylyk ýok: tizlik, tertip, bozulmalar — ählisi göz öňünde däl",
+        "solutionTitle": "Sürüji güýjügi",
+        "solutionDescription": "Hereketleriň doly taryhy, tizlige gözegçilik, tertibi güýçlendirmek"
+      },
+      "analytics": {
+        "painTitle": "Analitika",
+        "painDescription": "Elde hasabatlar, maglumatlar könelýär — kararlar maglumat ýokda kabul edilýär",
+        "solutionTitle": "Awtomatiki hasabatlar",
+        "solutionDescription": "Awtomatiki hasabatlar, her ulag üçin ýol we netijelilik analitikasy"
+      }
+    }
+  },
+  "Industry": {
+    "title": "Islendik pudaga laýyk",
+    "cards": {
+      "transport": "Ulag we logistika",
+      "construction": "Gurluşyk",
+      "agriculture": "Oba hojalygy",
+      "courier": "Kurýer hyzmatlary we eltip bermek",
+      "leasing": "Ulag lizingi we kärendesi",
+      "trailers": "Tirkeglere gözegçilik",
+      "taxi": "Taksi we gatnaşyk hyzmatlary",
+      "passenger": "Ýolagçy ulagy",
+      "municipal": "Kommunal ulag"
+    }
+  },
+  "Solution": {
+    "title": "Ähli çözgütler bir platformada",
+    "subtitle": "Platformamyzň ulanylyşy ýeňiş we işleri çalt çözmäge kömek edýändigine buýsanýarys. Üç ýönekeý ädimde düzüş we işe giriziş.",
+    "steps": {
+      "install": {
+        "title": "GPS trekerleri gurnaň",
+        "description": "Awtoulagyňyzdaky islendik ulag serişdesine aňsat gurnalýan kompakt GPS enjamlary hödürleýäris."
+      },
+      "connect": {
+        "title": "Platforma bilen baglanyşyk",
+        "description": "Ulag serişdeleri platforma awtomatik baglanýar. Dolandyryş paneliňizde derrew görünýär."
+      },
+      "monitor": {
+        "title": "Gözegçilik we mobil",
+        "description": "Möhüm onlaýn platformadan ähli awtoulagy gözegçilik ediň, seljeriş ediň we optimizasiýa ediň."
+      }
+    }
+  },
+  "BePartner": {
+    "title": "Hyzmatdaş boluň",
+    "intro": "Kompaniýalar awtoulagy netijeli dolandyrmakdan, artan kilometrden, işläp çykarylmadan we gizlin çykdajylardan millionlar ýitirýär. Siziň goşantyňyz bilen biz:",
+    "bullets": {
+      "routes": "Ugurlary optimizasiýa etmek we ýangyjy azaltmak",
+      "control": "Sürüjileri we awtoulagy hakyky wagtda gözegçilik etmek",
+      "costs": "Garaşylmadyk çykdajylary we işläp çykarylmalary azaltmak"
+    },
+    "outro": "Bize goşulyň — bilelikde ulagy işewürlik üçin arzanlaşdyryp, has aç-açan ederis.",
+    "imageAlt": "Logistika, GPS gözegçilik we hyzmatdaşlyk"
+  },
+  "Partners": {
+    "title": "Hyzmatdaşlarymyz",
+    "stripAlt": "Hyzmatdaşlaryň logalary",
+    "brands": {
+      "shantui": "SHANTUI",
+      "xcmg": "XCMG",
+      "cnhtc": "CNHTC",
+      "lovol": "LOVOL"
+    }
+  },
+  "Footer": {
+    "tagline": "Häzirki zaman işewürligi üçin doly GPS awtoulag dolandyryş çözgüdi",
+    "contactsTitle": "Kontaktlar",
+    "address": "Türkmenistan,ş. Aşgabat,k. Bitarap Türkmenistan 3/1, 'Altyn Ýüplük' bina",
+    "socialLabel": "Sosial ulgamlar",
+    "rights": "Ähli hukuklar goragly",
+    "privacy": "Gizlinlik syýasaty",
+    "cookies": "Cookie"
+  },
+  "CookiesPolicy": {
+    "title1": "Cookie syýasaty",
+    "description": "Hebent Tech kompaniýasynda biz siziň web sahypamyzy ulanmak tejribäňizi gowulandyrmak, sahypa traffigini seljermek we mazmuny şahsylaşdyrmak üçin cookie faýllaryny ulanýarys. Cookie faýllary — bu siziň enjamyňyzda saklanýan kiçi tekst faýllary bolup, olar siziň sazlamalaryňyzy ýatda saklamaga we web sahypamyz bilen nähili aragatnaşyk edýändigiňize düşünmäge kömek edýär.",
+    "what": "Biz haýsy görnüşli cookie faýllaryny ulanýarys?",
+    "categories": [
+      {
+        "title": "Esasy cookie faýllary:",
+        "description": "web sahypanyň dogry işlemegi üçin zerurdyr, sahypalar boýunça nawigasiýa we goragly bölümlere giriş ýaly esasy funksiýalary üpjün edýär."
+      },
+      {
+        "title": "Öndürijilik cookie faýllary:",
+        "description": "ulanyjylaryň sahypamyzy nähili ulanýandygyny ýygnap, tizligi we amatlylygy gowulandyrmaga kömek edýär."
+      },
+      {
+        "title": "Funksional cookie faýllary:",
+        "description": "siziň sazlamalaryňyzy we islegleriňizi ýatda saklap, has şahsylaşdyrylan tejribe berýär."
+      },
+      {
+        "title": "Mahabat cookie faýllary:",
+        "description": "siziň gyzyklanmalaryňyza laýyk mahabatlary görkezmek we marketing kampaniýalarynyň netijeliligini ölçemek üçin ulanylýar."
+      }
+    ],
+    "title2": "Cookie dolandyryşy",
+    "p1": "Siz cookie faýllaryny brauzeriňiziň sazlamalary arkaly dolandyryp ýa-da öçürip bilersiňiz. Käbir cookie faýllaryny bloklamak web sahypanyň işleýşine we ulanyş tejribesine täsir edip biler.",
+    "p2": "Cookie barada has giňişleýin maglumat almak we olary dolandyrmak üçin şu sahypa ýüz tutuň:",
+    "p3": "Web sahypamyzy ulanmagy dowam etdirmegiňiz bilen, siz şu syýasata laýyklykda cookie faýllarynyň ulanylmagyna razylyk berýärsiňiz."
+  },
+  "PrivacyPolicy": {
+    "title1": "Gizlinlik syýasaty",
+    "description1": "Hebent Tech kompaniýasynda biz siziň şahsy maglumatlaryňyzyň goralmagyna uly ähmiýet berýäris. Bu Gizlinlik syýasaty, siz biziň",
+    "description1_2": "web sahypamyzy ýa-da hyzmatlarymyzy ulananyňyzda, biz tarapyndan ýygnalýan, ulanylýan we goralýan şahsy maglumatlar barada düşündirýär.",
+    "title2": "Yygnalýan maglumatlar",
+    "description2": "Biz aşakdaky görnüşdäki maglumatlary ýygnap bileris:",
+    "items1": [
+      {
+        "title": "Şahsy maglumatlar:",
+        "description": "Siz biziň bilen habarlaşanyňyzda, işe ýüz tutanyňyzda ýa-da hyzmatlarymyzy ulananyňyzda, adyňyz, e-poçta salgysy, telefon belgiňiz ýa-da rezýumeňiz ýaly şahsy maglumatlary berip bilersiňiz."
+      },
+      {
+        "title": "Ulanyş maglumatlary:",
+        "description": "Biz siziň web sahypamyz bilen nähili özara gatnaşygyňyz bardygy barada maglumatlary ýygnap bileris, şol sanda IP salgysy, brauzer görnüşi, girilen sahypalar, sahypalarda geçirilen wagt we geçiş edilen çeşme sahypalary."
+      },
+      {
+        "title": "Cookie faýllary we yzarlama tehnologiýalary:",
+        "description": "Biz siziň tejribäňizi gowulandyrmak, ulanyş maglumatlaryny seljermek we mazmuny şahsylaşdyrmak üçin cookie faýllaryny we şuňa meňzeş tehnologiýalary ulanýarys. Siz cookie sazlamalaryny öz brauzeriňizde dolandyryp bilersiňiz."
+      }
+    ],
+    "title3": "Biz siziň maglumatlaryny nähili ulanýarys?",
+    "description3": "Biz siziň maglumatlaryňyzy şu maksatlar üçin ulanýarys:",
+    "items2": [
+      {
+        "description": "Hyzmatlarymyzy hödürlemek we gowulandyrmak"
+      },
+      {
+        "description": "Siziň bilen aragatnaşyk saklamak (mysal üçin, jogaplar, täzelikler, habar býulletenleri)"
+      },
+      {
+        "description": "Işe ýüz tutmalary işläp taýýarlamak"
+      },
+      {
+        "description": "Web sahypanyň işleýşini we ulanyjylaryň hereketini seljermek"
+      },
+      {
+        "description": "Kanuny borçnamalary ýerine ýetirmek"
+      }
+    ],
+    "span": "Biz hiç haçan siziň şahsy maglumatlaryňyzy üçünji taraplara satmaýarys ýa-da kärendesine bermeýäris."
+  }
+}
