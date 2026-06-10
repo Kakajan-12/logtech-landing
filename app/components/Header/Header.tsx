@@ -96,7 +96,7 @@ export default function Header() {
         <div className="flex w-full items-center justify-between gap-2 py-3 container mx-auto px-5 lg:px-10">
           <div className="flex items-center gap-x-5 md:gap-x-9 text-xs ">
             <a
-              href={`tel:+993 71 397778`}
+              href={`tel:+993 71 397739`}
               className="inline-flex items-center gap-1 text-[#4D4D4D] leading-none hover:text-[#0044E1]"
             >
               <HiOutlinePhone
@@ -104,7 +104,7 @@ export default function Header() {
                 aria-hidden
               />
               <span className="shrink-0 leading-none tabular-nums pt-1">
-                +993 71 397778
+                +993 71 397739
               </span>
             </a>
             <a

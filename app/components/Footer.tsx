@@ -85,12 +85,12 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-sm md:text-base font-medium">
               <li>
                 <a
-                  href={`tel:+993 71 397778`}
+                  href={`tel:+993 71 397739`}
                   className="inline-flex items-start gap-3 text-white/95 transition-opacity hover:opacity-90"
                 >
                   <HiOutlinePhone className="size-4 shrink-0" aria-hidden />
                   <span className="tabular-nums leading-none mt-1">
-                    +993 71 397778
+                    +993 71 397739
                   </span>
                 </a>
               </li>
