@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import favicon from "@/app/favicon.ico";
 
 export const metadata: Metadata = {
-  title: "Hebent Logtech ",
+  title: "Hebent Fleet ",
   description:
     "Monitor vehicles, optimize routes and reduce costs with our GPS fleet management platform.",
   icons: {
