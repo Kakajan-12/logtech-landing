@@ -181,7 +181,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between py-3 bg-white/20 backdrop-blur-sm">
+      <div className="flex items-center justify-between py-3 bg-white/70 backdrop-blur-sm">
         <div className="container  mx-auto flex items-center justify-between gap-4 px-5 lg:px-10">
           <Link
             href="/"
@@ -252,36 +252,36 @@ export default function Header() {
                 <RxHamburgerMenu className="size-4" aria-hidden />
               )}
             </button>
-            {menuOpen ? (
-              <div className="absolute right-0 top-12 z-100 overflow-hidden border-l border-b border-white/30 bg-white/50 backdrop-blur-sm backdrop-saturate-200 shadow-sm lg:hidden">
-                <nav
-                  className="flex flex-col gap-3 pt-3"
-                  aria-label="Main mobile "
-                >
-                  {navKeys.map((key) => (
-                    <Link
-                      key={key}
-                      href={`/#${key}`}
-                      scroll={false}
-                      className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors last:border-0  ${
-                        isActive(key)
-                          ? "text-brand bg-brand/10"
-                          : "text-neutral-900 hover:bg-white/40"
-                      }`}
-                      onClick={() => {
-                        setMenuOpen(false);
-                        setHash(`#${key}`);
-                      }}
-                    >
-                      {t(`nav.${key}`)}
-                    </Link>
-                  ))}
-                </nav>
-              </div>
-            ) : null}
           </div>
         </div>
       </div>
+
+      {menuOpen ? (
+        <div className="pointer-events-none absolute inset-x-0 top-full z-100 container mx-auto flex justify-end px-5 lg:hidden">
+          <div className="pointer-events-auto overflow-hidden border-l border-b border-white/30 bg-white shadow-sm">
+            <nav className="flex flex-col gap-3 pt-3" aria-label="Main mobile">
+              {navKeys.map((key) => (
+                <Link
+                  key={key}
+                  href={`/#${key}`}
+                  scroll={false}
+                  className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors last:border-0  ${
+                    isActive(key)
+                      ? "text-brand bg-brand/10"
+                      : "text-neutral-900 hover:bg-white/40"
+                  }`}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setHash(`#${key}`);
+                  }}
+                >
+                  {t(`nav.${key}`)}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 }

@@ -42,7 +42,7 @@ export default function Footer() {
         }
         aria-hidden
       />
-      <div className="relative z-10 container mx-auto px-5 lg:px-10 py-6 md:py-10 lg:py-16">
+      <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-6 md:pt-10 lg:pt-16 pb-6 lg:pb-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <div className="logo flex flex-col gap-3">
             <div className="flex items-center gap-3">
@@ -105,7 +105,7 @@ export default function Footer() {
               </li>
               <li className="inline-flex items-start gap-3 text-white/95">
                 <FiMapPin className="size-4 shrink-0" aria-hidden />
-                <span className="leading-none">{t("address")}</span>
+                <span className="leading-5">{t("address")}</span>
               </li>
             </ul>
             <ul
@@ -128,34 +128,34 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="relative z-10 w-full bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB] px-5 py-2 text-center text-xs text-white/60 lg:px-10">
-        <div className="w-full flex flex-wrap items-center justify-center gap-1">
-          <span className="whitespace-nowrap">{t("rights")} | </span>
-          <Link
-            href={`/${lang}/privasypolicy`}
-            className="underline-offset-2 hover:underline whitespace-nowrap"
-          >
-            {t("privacy")} |
-          </Link>
-          <Link
-            href={`/${lang}/cookies`}
-            className="underline-offset-2 hover:underline whitespace-nowrap"
-          >
-            Cookies |
-          </Link>
-          <span className="whitespace-nowrap"> Powered by </span>
-          <div className="flex items-center">
-            <Image
-              src="/logoIcon.svg"
-              alt="HEBENT TECHNOLOGY"
-              width={24}
-              height={24}
-              className="inline-block mx-1 shrink-0 brightness-0 invert logo-spin motion-reduce:animate-none"
-            />
-            <span className="text-white whitespace-nowrap">
-              HEBENT TECHNOLOGY
+
+        <div className="mt-4 lg:mt-16 border-t border-white/30 pt-4 flex flex-col gap-2 lg:gap-4 md:flex-row md:items-center md:justify-between text-base lg:text-sm text-white">
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 lg:gap-x-4">
+            <Link
+              href={`/${lang}/privasypolicy`}
+              className="whitespace-nowrap underline-offset-2 text-xs md:text-sm hover:underline"
+            >
+              {t("privacy")}
+            </Link>
+            <Link
+              href={`/${lang}/cookies`}
+              className="whitespace-nowrap underline-offset-2 text-xs md:text-sm hover:underline"
+            >
+              {t("cookies")}
+            </Link>
+          </nav>
+          <div className="flex flex-col md:flex-row items-start gap-2 md:items-center lg:gap-5">
+            <span className="whitespace-nowrap text-sm">
+              © {year}, {t("rights")}
             </span>
+            <Image
+              src="/logo.svg"
+              alt={tHeader("brand")}
+              width={155}
+              height={50}
+              className="h-8 w-auto filter-[brightness(0)_invert(1)]"
+              style={{ width: "auto" }}
+            />
           </div>
         </div>
       </div>
