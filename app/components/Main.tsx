@@ -40,7 +40,7 @@ export default function Main() {
         <div className="relative container mx-auto px-5 lg:px-10 flex flex-col justify-center gap-12 md:gap-8">
           <h1
             id="hero-heading"
-            className="max-w-3xl font-vox text-3xl lg:text-6xl font-bold text-center lg:text-left leading-tight tracking-tight text-white"
+            className="max-w-3xl font-play text-3xl lg:text-6xl font-bold text-center lg:text-left leading-tight tracking-tight text-white"
           >
             {t("title")}
           </h1>

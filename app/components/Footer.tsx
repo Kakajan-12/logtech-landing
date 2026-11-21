@@ -42,7 +42,7 @@ export default function Footer() {
         }
         aria-hidden
       />
-      <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-6 md:pt-10 lg:pt-16 pb-6 lg:pb-5">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 lg:px-10 pt-6 md:pt-10 lg:pt-16 pb-6 lg:pb-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <div className="logo flex flex-col gap-3">
             <div className="flex items-center gap-3">
@@ -159,7 +159,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#2768FF] font-nexa font-bold text-xs lg:text-base text-[#ACABAB] bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]">
+      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#2768FF] font-jost font-bold text-xs lg:text-base text-[#ACABAB] bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]">
         <div className="container mx-auto py-3 px-5 lg:px-10 flex items-center gap-2">
           <span className="leading-none pt-1">{year}</span>
           <p className="flex items-center gap-1">

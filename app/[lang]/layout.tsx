@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Jost, Play } from "next/font/google";
 import "./globals.css";
 import { routing } from "@/app/i18n/routing";
 import { hasLocale } from "next-intl";
@@ -8,6 +9,19 @@ import { NextIntlClientProvider } from "next-intl";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
 import favicon from "@/app/favicon.ico";
+
+const jost = Jost({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-jost-google",
+  display: "swap",
+});
+
+const play = Play({
+  weight: ["400", "700"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-play-google",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Hebent Fleet ",
@@ -35,7 +49,7 @@ export default async function RootLayout({
   setRequestLocale(lang);
   const messages = await getMessages();
   return (
-    <html lang={lang} className={`h-full antialiased`}>
+    <html lang={lang} className={`${jost.variable} ${play.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Header />

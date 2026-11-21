@@ -92,7 +92,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-light-blue/60 shadow-sm">
-      <div className="contacts flex items-center justify-between bg-white text-sm text-[#4D4D4D] font-nexa">
+      <div className="contacts flex items-center justify-between bg-white text-sm text-[#4D4D4D] font-jost">
         <div className="flex w-full items-center justify-between gap-2 py-3 container mx-auto px-5 lg:px-10">
           <div className="flex items-center gap-x-5 md:gap-x-9 text-xs ">
             <a
@@ -123,7 +123,7 @@ export default function Header() {
           <div ref={langRef} className="relative z-70 shrink-0 text-black">
             <button
               type="button"
-              className="inline-flex items-center gap-1 rounded-md font-bold font-nexa py-2 px-2 transition-colors hover:bg-neutral-100"
+              className="inline-flex items-center gap-1 rounded-md font-bold font-jost py-2 px-2 transition-colors hover:bg-neutral-100"
               aria-expanded={langOpen}
               aria-haspopup="listbox"
               aria-label={t("language")}
@@ -133,10 +133,10 @@ export default function Header() {
               }}
             >
               <CiGlobe className="size-5 shrink-0" aria-hidden />
-              <span className="font-vox text-xs font-semibold tracking-wide sm:hidden">
+              <span className="font-play text-xs font-semibold tracking-wide sm:hidden">
                 {langShort(locale)}
               </span>
-              <span className="hidden font-nexa text-sm sm:inline">
+              <span className="hidden font-jost text-sm sm:inline">
                 {t(`langNames.${locale}`)}
               </span>
             </button>
@@ -206,7 +206,7 @@ export default function Header() {
                 key={key}
                 href={`#${key}`}
                 scroll={false}
-                className={`font-nexa text-base font-bold transition-colors ${
+                className={`font-jost text-base font-bold transition-colors ${
                   isActive(key) ? "text-brand" : "text-black hover:text-brand"
                 }`}
                 onClick={() => setHash(`#${key}`)}

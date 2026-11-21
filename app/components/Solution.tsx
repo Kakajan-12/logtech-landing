@@ -33,7 +33,7 @@ export default function Solution() {
           whileInView="visible"
           viewport={viewport}
           id="solution-heading"
-          className="text-center font-vox text-2xl font-bold tracking-tight text-[#002148] sm:text-3xl lg:text-4xl"
+          className="text-center font-play text-2xl font-bold tracking-tight text-[#002148] sm:text-3xl lg:text-4xl"
         >
           {t("title")}
         </motion.h2>
@@ -80,7 +80,7 @@ export default function Solution() {
                       aria-hidden
                     />
                   </div>
-                  <h3 className="mt-4 max-w-xs font-nexa text-base font-bold text-neutral-900 sm:text-lg">
+                  <h3 className="mt-4 max-w-xs font-jost text-base font-bold text-neutral-900 sm:text-lg">
                     {t(`steps.${key}.title`)}
                   </h3>
                   <p className="mt-2 max-w-xs text-sm leading-snug text-neutral-500">

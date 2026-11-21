@@ -45,7 +45,7 @@ export default async function Industry() {
   return (
     <section id="industry" className="scroll-mt-32 bg-brand md:scroll-mt-36 ">
       <div className="py-15 lg:py-28">
-        <h2 className="mb-10 lg:mb-12 text-center font-vox text-2xl lg:text-4xl font-bold text-white">
+        <h2 className="mb-10 lg:mb-12 text-center font-play text-2xl lg:text-4xl font-bold text-white">
           {t("title")}
         </h2>
         <CarouselSpacing items={items} />
