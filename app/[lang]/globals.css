@@ -33,10 +33,7 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
   --color-brand: #0044e1;
-  --color-brand-blue: #0044e11a;
   --color-light-blue: var(--color-light-blue);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-jost: var(--font-jost-google), ui-sans-serif, system-ui, sans-serif;
   --font-play: var(--font-play-google), ui-sans-serif, system-ui, sans-serif;
 }
@@ -50,43 +47,6 @@ body {
   border-radius: 8px;
 }
 
-.partners-marquee-track {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 0;
-  width: max-content;
-  animation: partners-marquee 50s linear infinite;
-}
-
-.partners-marquee-group {
-  flex-shrink: 0;
-  align-items: center;
-}
-
-@keyframes partners-marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .partners-marquee-track {
-    animation: none;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 1.5rem;
-  }
-
-  .partners-marquee-group--duplicate {
-    display: none;
-  }
-}
 .footer-bg-pattern {
   pointer-events: none;
   position: absolute;
@@ -107,27 +67,5 @@ body {
 @media (min-width: 768px) {
   .footer-bg-pattern {
     --footer-bg-cell: 48px;
-  }
-}
-
-.image-carousel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: 400px;
-  grid-auto-flow: column;
-}
-.logo-spin {
-  animation: spin 12s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
