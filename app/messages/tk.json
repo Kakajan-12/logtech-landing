@@ -186,6 +186,8 @@
   },
   "Metadata": {
     "title": "Hebent Fleet — GPS arkaly awtoulag gözegçiligi",
-    "description": "GPS platformamyz bilen ulag serişdelerine gözegçilik ediň, ugurlary optimizasiýa ediň we çykdajylary azaldyň."
+    "description": "GPS platformamyz bilen ulag serişdelerine gözegçilik ediň, ugurlary optimizasiýa ediň we çykdajylary azaldyň.",
+    "cookiesDescription": "Hebent Tech bu saýtda cookie faýllaryny nähili ulanýar we olary nähili dolandyryp bolýar.",
+    "privacyDescription": "Hebent Tech siziň beren şahsy maglumatlaryňyzy nähili ýygnaýar, ulanýar we goraýar."
   }
 }

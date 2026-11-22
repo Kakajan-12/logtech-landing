@@ -1,6 +1,22 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/app/i18n/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang, namespace: "PrivacyPolicy" });
+  const tMeta = await getTranslations({ locale: lang, namespace: "Metadata" });
+  return {
+    title: t("title1"),
+    description: tMeta("privacyDescription"),
+  };
+}
+
 interface PrivacySection {
   title: string;
   content: ReactNode;

@@ -38,7 +38,11 @@ export async function generateMetadata({
     : routing.defaultLocale;
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
-    title: t("title"),
+    title: {
+      default: t("title"),
+      // Child pages set only their own name, e.g. "Cookies Policy — Hebent Fleet"
+      template: "%s — Hebent Fleet",
+    },
     description: t("description"),
     icons: {
       icon: favicon.src,
