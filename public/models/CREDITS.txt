@@ -1,3 +1,4 @@
 truck.glb — DAF XF 2013 tractor with trailer, converted from the source model kept
 locally in /Truck (not committed). Cab interior and engine removed, geometry
-simplified and compressed (EXT_meshopt_compression), textures resized to 2048/512 px.
+simplified and compressed (EXT_meshopt_compression), textures resized to 2048/512 px. The trailer texture is repainted in Hebent colours
+(gradient #0F833F -> #08945A, Hebent Fleet logo) instead of the original DAF artwork.
