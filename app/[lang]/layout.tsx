@@ -4,7 +4,11 @@ import "./globals.css";
 import { routing } from "@/app/i18n/routing";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { setRequestLocale, getMessages } from "next-intl/server";
+import {
+  setRequestLocale,
+  getMessages,
+  getTranslations,
+} from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
@@ -23,14 +27,25 @@ const play = Play({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Hebent Fleet ",
-  description:
-    "Monitor vehicles, optimize routes and reduce costs with our GPS fleet management platform.",
-  icons: {
-    icon: favicon.src,
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = hasLocale(routing.locales, lang)
+    ? lang
+    : routing.defaultLocale;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    icons: {
+      icon: favicon.src,
+    },
+  };
+}
+
 export function generateStaticParams() {
   return routing.locales.map((lang) => ({ lang }));
 }
