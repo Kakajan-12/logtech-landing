@@ -9,6 +9,7 @@ import { routing } from "@/app/i18n/routing";
 import { CiGlobe } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaXmark } from "react-icons/fa6";
+import { scrollToSection } from "@/lib/scrollToSection";
 
 export default function Header() {
   const t = useTranslations("Header");
@@ -35,7 +36,7 @@ export default function Header() {
       setHash(window.location.hash);
     });
     return () => cancelAnimationFrame(id);
-  }, [locale]);
+  }, [locale, pathname]);
 
   useEffect(() => {
     const id = hash.replace(/^#/, "");
@@ -77,6 +78,14 @@ export default function Header() {
 
   const isActive = (id: string) => hash === `#${id}`;
 
+  // On a page that has the section: smooth-scroll in place.
+  // Otherwise (e.g. /cookies): let the Link navigate to `/#id` on the home page.
+  const goToSection = (id: string) => (e: React.MouseEvent) => {
+    setMenuOpen(false);
+    setLangOpen(false);
+    if (scrollToSection(id)) e.preventDefault();
+  };
+
   const langShort = (l: string) =>
     l === "ru" ? "RU" : l === "tk" ? "TM" : l.toUpperCase();
 
@@ -92,11 +101,11 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-light-blue/60 shadow-sm">
-      <div className="contacts flex items-center justify-between bg-white text-sm text-[#4D4D4D] font-nexa">
+      <div className="contacts flex items-center justify-between bg-white text-sm text-[#4D4D4D] font-sans">
         <div className="flex w-full items-center justify-between gap-2 py-3 container mx-auto px-5 lg:px-10">
           <div className="flex items-center gap-x-5 md:gap-x-9 text-xs ">
             <a
-              href={`tel:+993 71 397739`}
+              href="tel:+99371397739"
               className="inline-flex items-center gap-1 text-[#4D4D4D] leading-none hover:text-[#0044E1]"
             >
               <HiOutlinePhone
@@ -123,7 +132,7 @@ export default function Header() {
           <div ref={langRef} className="relative z-70 shrink-0 text-black">
             <button
               type="button"
-              className="inline-flex items-center gap-1 rounded-md font-bold font-nexa py-2 px-2 transition-colors hover:bg-neutral-100"
+              className="inline-flex items-center gap-1 rounded-md font-bold font-sans py-2 px-2 transition-colors hover:bg-neutral-100"
               aria-expanded={langOpen}
               aria-haspopup="listbox"
               aria-label={t("language")}
@@ -133,10 +142,10 @@ export default function Header() {
               }}
             >
               <CiGlobe className="size-5 shrink-0" aria-hidden />
-              <span className="font-vox text-xs font-semibold tracking-wide sm:hidden">
+              <span className="font-heading text-xs font-semibold tracking-wide sm:hidden">
                 {langShort(locale)}
               </span>
-              <span className="hidden font-nexa text-sm sm:inline">
+              <span className="hidden font-sans text-sm sm:inline">
                 {t(`langNames.${locale}`)}
               </span>
             </button>
@@ -204,12 +213,11 @@ export default function Header() {
             {navKeys.map((key) => (
               <Link
                 key={key}
-                href={`#${key}`}
-                scroll={false}
-                className={`font-nexa text-base font-bold transition-colors ${
+                href={`/#${key}`}
+                className={`font-sans text-base font-bold transition-colors ${
                   isActive(key) ? "text-brand" : "text-black hover:text-brand"
                 }`}
-                onClick={() => setHash(`#${key}`)}
+                onClick={goToSection(key)}
               >
                 {t(`nav.${key}`)}
               </Link>
@@ -218,12 +226,9 @@ export default function Header() {
 
           <div className="relative flex items-center gap-3">
             <Link
-              href="#"
-              scroll={false}
+              href="/#contacts"
               className="rounded-sm bg-brand w-30 items-center justify-center text-center py-2.5 text-xs lg:text-base font-bold text-white transition-opacity hover:opacity-90 lg:inline-flex"
-              onClick={() => {
-                setMenuOpen(false);
-              }}
+              onClick={goToSection("contacts")}
             >
               {t("getDemo")}
             </Link>
@@ -264,16 +269,12 @@ export default function Header() {
                 <Link
                   key={key}
                   href={`/#${key}`}
-                  scroll={false}
                   className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors last:border-0  ${
                     isActive(key)
                       ? "text-brand bg-brand/10"
                       : "text-neutral-900 hover:bg-white/40"
                   }`}
-                  onClick={() => {
-                    setMenuOpen(false);
-                    setHash(`#${key}`);
-                  }}
+                  onClick={goToSection(key)}
                 >
                   {t(`nav.${key}`)}
                 </Link>

@@ -8,6 +8,21 @@ import { NextIntlClientProvider } from "next-intl";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
 import favicon from "@/app/favicon.ico";
+import { Exo_2, Montserrat } from "next/font/google";
+
+// Free (SIL Open Font License) replacements for the commercial Nexa and Vox fonts.
+// Both cover Latin, Turkmen (latin-ext) and Cyrillic.
+const montserrat = Montserrat({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
+const exo2 = Exo_2({
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  variable: "--font-exo2",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Hebent Fleet ",
@@ -35,7 +50,7 @@ export default async function RootLayout({
   setRequestLocale(lang);
   const messages = await getMessages();
   return (
-    <html lang={lang} className={`h-full antialiased`}>
+    <html lang={lang} className={`${montserrat.variable} ${exo2.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Header />

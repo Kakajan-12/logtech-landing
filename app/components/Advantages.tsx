@@ -53,7 +53,7 @@ export default function Advantages() {
           whileInView="visible"
           viewport={viewport}
           id="advantages-heading"
-          className="text-center font-vox text-2xl font-bold tracking-tight text-[#0B1F3F] sm:text-3xl lg:text-4xl"
+          className="text-center font-heading text-2xl font-bold tracking-tight text-[#0B1F3F] sm:text-3xl lg:text-4xl"
         >
           {t("title")}
         </motion.h2>
@@ -82,7 +82,7 @@ export default function Advantages() {
                   className="size-7 text-[#F34D29]"
                   strokeWidth={1.5}
                 />
-                <span className="font-nexa text-sm font-bold text-[#F34D29] sm:text-base">
+                <span className="font-sans text-sm font-bold text-[#F34D29] sm:text-base">
                   {t("painColumn")}
                 </span>
               </div>
@@ -95,7 +95,7 @@ export default function Advantages() {
                   strokeWidth={2.75}
                   aria-hidden
                 />
-                <span className="font-nexa text-sm font-bold text-brand sm:text-base">
+                <span className="font-sans text-sm font-bold text-brand sm:text-base">
                   {t("solutionColumn")}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export default function Advantages() {
                 </div>
                 <h3
                   id={`we-solve-${id}-pain-title`}
-                  className="font-nexa text-base font-bold leading-snug text-[#F34D29] sm:text-lg"
+                  className="font-sans text-base font-bold leading-snug text-[#F34D29] sm:text-lg"
                 >
                   {t(`rows.${id}.painTitle`)}
                 </h3>
@@ -151,7 +151,7 @@ export default function Advantages() {
                 </div>
                 <h3
                   id={`we-solve-${id}-solution-title`}
-                  className="font-nexa text-base font-bold leading-snug text-brand sm:text-lg"
+                  className="font-sans text-base font-bold leading-snug text-brand sm:text-lg"
                 >
                   {t(`rows.${id}.solutionTitle`)}
                 </h3>

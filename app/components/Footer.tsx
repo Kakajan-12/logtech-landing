@@ -85,7 +85,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-sm md:text-base font-medium">
               <li>
                 <a
-                  href={`tel:+993 71 397739`}
+                  href="tel:+99371397739"
                   className="inline-flex items-start gap-3 text-white/95 transition-opacity hover:opacity-90"
                 >
                   <HiOutlinePhone className="size-4 shrink-0" aria-hidden />
@@ -159,7 +159,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#2768FF] font-nexa font-bold text-xs lg:text-base text-[#ACABAB] bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]">
+      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#2768FF] font-sans font-bold text-xs lg:text-base text-[#ACABAB] bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]">
         <div className="container mx-auto py-3 px-5 lg:px-10 flex items-center gap-2">
           <span className="leading-none pt-1">{year}</span>
           <p className="flex items-center gap-1">
