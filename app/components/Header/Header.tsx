@@ -220,7 +220,7 @@ export default function Header() {
               <Link
                 key={key}
                 href={`/#${key}`}
-                className={`font-jost text-base font-bold transition-colors ${
+                className={`font-jost text-base font-medium transition-colors ${
                   isActive(key) ? "text-brand" : "text-black hover:text-brand"
                 }`}
                 onClick={goToSection(key)}
@@ -231,7 +231,7 @@ export default function Header() {
             <Link
               href="/showcase"
               aria-current={onShowcase ? "page" : undefined}
-              className={`font-jost text-base font-bold transition-colors ${
+              className={`font-jost text-base font-medium transition-colors ${
                 onShowcase ? "text-brand" : "text-black hover:text-brand"
               }`}
               onClick={closeMenus}
@@ -243,7 +243,7 @@ export default function Header() {
           <div className="relative flex items-center gap-3">
             <Link
               href="/#contacts"
-              className="rounded-sm bg-brand w-30 items-center justify-center text-center py-2.5 text-xs lg:text-base font-bold text-white transition-opacity hover:opacity-90 lg:inline-flex"
+              className="rounded-sm bg-brand w-30 items-center justify-center text-center py-2.5 text-xs lg:text-base font-semibold text-white transition-opacity hover:opacity-90 lg:inline-flex"
               onClick={goToSection("contacts")}
             >
               {t("getDemo")}

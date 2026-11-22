@@ -80,7 +80,7 @@ export default function Solution() {
                       aria-hidden
                     />
                   </div>
-                  <h3 className="mt-4 max-w-xs font-jost text-base font-bold text-neutral-900 sm:text-lg">
+                  <h3 className="mt-4 max-w-xs font-jost text-base font-semibold text-neutral-900 sm:text-lg">
                     {t(`steps.${key}.title`)}
                   </h3>
                   <p className="mt-2 max-w-xs text-sm leading-snug text-neutral-500">

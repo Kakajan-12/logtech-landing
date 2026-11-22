@@ -88,7 +88,7 @@ export default function BePartner() {
                     className="size-4 shrink-0 text-emerald-500 sm:size-6"
                     aria-hidden
                   />
-                  <span className="text-base font-bold leading-5 text-black">
+                  <span className="text-base font-medium leading-5 text-black">
                     {t(`bullets.${key}`)}
                   </span>
                 </motion.li>
