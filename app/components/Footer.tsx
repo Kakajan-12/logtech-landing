@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
-import logo from "../../public/logoIcon.svg";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWechat } from "react-icons/io5";
 import footerBg from "../../public/bg-footer1.svg";
@@ -164,7 +163,7 @@ export default function Footer() {
           <span className="leading-none pt-1">{year}</span>
           <p className="flex items-center gap-1">
             <Image
-              src={logo}
+              src="/logoIcon.svg"
               alt="logo"
               width={25}
               height={25}
