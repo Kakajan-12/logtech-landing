@@ -35,10 +35,14 @@
   --color-brand: #0044e1;
   --color-brand-blue: #0044e11a;
   --color-light-blue: var(--color-light-blue);
-  /* Fonts are loaded via next/font/google in app/[lang]/layout.tsx (OFL, free) */
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-exo2), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, monospace;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-jost: var(--font-jost-google), ui-sans-serif, system-ui, sans-serif;
+  --font-play: var(--font-play-google), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-jost-google), system-ui, sans-serif;
 }
 
 .image-partner {

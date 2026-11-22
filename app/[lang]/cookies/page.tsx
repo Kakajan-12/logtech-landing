@@ -33,15 +33,15 @@ export default async function CookiesPolicyPage({
   ];
   return (
     <section className="min-h-screen container mx-auto py-5 md:py-8 lg:py-10 px-5 sm:px-7 lg:px-10 flex flex-col gap-4 lg:gap-8 mb-10">
-      <h2 className="font-sans text-2xl md:text-6xl font-bold tracking-tight">
+      <h2 className="font-jost text-2xl md:text-6xl font-bold tracking-tight">
         {t("title1")}
       </h2>
 
-      <p className="font-sans text-sm lg:text-2xl leading-relaxed">
+      <p className="font-jost text-sm lg:text-2xl leading-relaxed">
         {t("description")}
       </p>
 
-      <div className="font-sans text-sm lg:text-2xl">
+      <div className="font-jost text-sm lg:text-2xl">
         <h3>{t("what")}</h3>
         <ul className="list-disc pl-5 space-y-2">
           {cookieCategories.map((item, index) => (
@@ -53,7 +53,7 @@ export default async function CookiesPolicyPage({
         </ul>
       </div>
 
-      <div className="font-sans text-sm lg:text-2xl">
+      <div className="font-jost text-sm lg:text-2xl">
         <h2 className="text-xl lg:text-3xl font-bold mb-2">{t("title2")}</h2>
         <div className="space-y-1 leading-relaxed font-normal">
           <p>{t("p1")}</p>

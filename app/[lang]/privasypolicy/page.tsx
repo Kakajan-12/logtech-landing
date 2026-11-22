@@ -58,11 +58,11 @@ export default async function PrivacyPolicyPage({
     <section className="min-h-screen container mx-auto py-5 md:py-8 lg:py-10 px-5 sm:px-7 lg:px-10 text-black mb-10">
       <div className="mx-auto flex flex-col">
         {/* Заголовок */}
-        <h2 className="font-sans text-2xl md:text-6xl font-bold tracking-tight mb-6 lg:mb-12">
+        <h2 className="font-jost text-2xl md:text-6xl font-bold tracking-tight mb-6 lg:mb-12">
           {t("title1")}
         </h2>
         {/* Вступление */}
-        <p className="mb-6 lg:mb-8 text-sm lg:text-xl font-sans leading-relaxed">
+        <p className="mb-6 lg:mb-8 text-sm lg:text-xl font-jost leading-relaxed">
           {t("description1")}
           <Link
             href="https://hebent.tech"
@@ -79,7 +79,7 @@ export default async function PrivacyPolicyPage({
         {/* Секции */}
         <div className="space-y-6 lg:space-y-10">
           {sections.map((section, index) => (
-            <section key={index} className="font-sans text-sm lg:text-xl pt-4">
+            <section key={index} className="font-jost text-sm lg:text-xl pt-4">
               <h3 className="text-xl lg:text-3xl font-bold mb-6">
                 {index + 1}. {section.title}
               </h3>

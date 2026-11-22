@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Jost, Play } from "next/font/google";
 import "./globals.css";
 import { routing } from "@/app/i18n/routing";
 import { hasLocale } from "next-intl";
@@ -8,19 +9,17 @@ import { NextIntlClientProvider } from "next-intl";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
 import favicon from "@/app/favicon.ico";
-import { Exo_2, Montserrat } from "next/font/google";
 
-// Free (SIL Open Font License) replacements for the commercial Nexa and Vox fonts.
-// Both cover Latin, Turkmen (latin-ext) and Cyrillic.
-const montserrat = Montserrat({
+const jost = Jost({
   subsets: ["latin", "latin-ext", "cyrillic"],
-  variable: "--font-montserrat",
+  variable: "--font-jost-google",
   display: "swap",
 });
 
-const exo2 = Exo_2({
+const play = Play({
+  weight: ["400", "700"],
   subsets: ["latin", "latin-ext", "cyrillic"],
-  variable: "--font-exo2",
+  variable: "--font-play-google",
   display: "swap",
 });
 
@@ -50,7 +49,7 @@ export default async function RootLayout({
   setRequestLocale(lang);
   const messages = await getMessages();
   return (
-    <html lang={lang} className={`${montserrat.variable} ${exo2.variable} h-full antialiased`}>
+    <html lang={lang} className={`${jost.variable} ${play.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={lang} messages={messages}>
           <Header />

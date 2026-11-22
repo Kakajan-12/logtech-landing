@@ -60,10 +60,10 @@ export function CarouselSpacing({ items }: CarouselSpacingProps) {
                   aria-hidden
                 /> */}
                 <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
-                  <p className="font-sans text-4xl lg:text-5xl font-bold leading-none tabular-nums sm:text-5xl">
+                  <p className="font-jost text-4xl lg:text-5xl font-bold leading-none tabular-nums sm:text-5xl">
                     {item.id}
                   </p>
-                  <p className="mt-2 min-h-[2lh] font-sans text-base font-bold leading-snug line-clamp-2 sm:text-lg lg:text-2xl">
+                  <p className="mt-2 min-h-[2lh] font-jost text-base font-bold leading-snug line-clamp-2 sm:text-lg lg:text-2xl">
                     {item.title}
                   </p>
                 </div>

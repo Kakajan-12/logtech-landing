@@ -34,7 +34,7 @@ export default function BePartner() {
           whileInView="visible"
           viewport={viewport}
           id="be-partner-heading"
-          className="mb-8 text-center block lg:hidden font-heading text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl"
+          className="mb-8 text-center block lg:hidden font-play text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl"
         >
           {t("title")}
         </motion.h2>
@@ -55,13 +55,13 @@ export default function BePartner() {
             />
           </motion.div>
 
-          <div className="font-sans flex flex-col justify-center gap-y-6">
+          <div className="font-jost flex flex-col justify-center gap-y-6">
             <motion.h3
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={viewport}
-              className="hidden lg:block font-heading text-4xl font-bold tracking-tight text-[#002148]"
+              className="hidden lg:block font-play text-4xl font-bold tracking-tight text-[#002148]"
             >
               {t("title")}
             </motion.h3>
