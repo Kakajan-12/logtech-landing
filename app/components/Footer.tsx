@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="mt-4 lg:mt-16 border-t border-white/30 pt-4 flex flex-col gap-2 lg:gap-4 md:flex-row md:items-center md:justify-between text-base lg:text-sm text-white">
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 lg:gap-x-4">
             <Link
-              href={`/${lang}/privasypolicy`}
+              href={`/${lang}/privacy-policy`}
               className="whitespace-nowrap underline-offset-2 text-xs md:text-sm hover:underline"
             >
               {t("privacy")}
