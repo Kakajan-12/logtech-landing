@@ -189,5 +189,69 @@
     "description": "Monitor vehicles, optimize routes and reduce costs with our GPS fleet management platform.",
     "cookiesDescription": "How Hebent Tech uses cookies on this website and how you can manage them.",
     "privacyDescription": "How Hebent Tech collects, uses and protects the personal information you provide."
+  },
+  "Showcase": {
+    "meta": {
+      "title": "Showcase",
+      "description": "An interactive 3D tour of the Hebent Fleet GPS monitoring platform."
+    },
+    "hero": {
+      "eyebrow": "Hebent Fleet · live",
+      "title": "Your whole fleet on one living map",
+      "subtitle": "Every vehicle, route and stop — tracked in real time and brought to life in 3D.",
+      "ctaSecondary": "Take the tour",
+      "hint": "Drag the globe to rotate it",
+      "globeLabel": "3D globe with live delivery routes from Ashgabat"
+    },
+    "stats": {
+      "brands": "equipment brands",
+      "industries": "industries",
+      "monitoring": "real-time monitoring",
+      "steps": "steps to get started"
+    },
+    "truck": {
+      "eyebrow": "Telematics",
+      "title": "Every vehicle tells a story",
+      "text": "Speed, fuel, location and engine data stream from each vehicle to your dashboard every second.",
+      "speed": "Speed",
+      "speedValue": "72 km/h",
+      "fuel": "Fuel level",
+      "fuelValue": "64%",
+      "gps": "GPS signal",
+      "gpsValue": "12 satellites",
+      "engine": "Engine",
+      "engineValue": "Running",
+      "hint": "Scroll to turn the truck",
+      "truckLabel": "3D model of a truck with a GPS tracker"
+    },
+    "features": {
+      "title": "Built for full control",
+      "items": {
+        "tracking": {
+          "title": "Live tracking",
+          "text": "See every vehicle on the map with second-by-second updates."
+        },
+        "fuel": {
+          "title": "Fuel control",
+          "text": "Spot fuel drain, idling and unnecessary trips before they cost you."
+        },
+        "alerts": {
+          "title": "Smart alerts",
+          "text": "Get notified about speeding, route deviations and unplanned stops."
+        },
+        "reports": {
+          "title": "Automated reports",
+          "text": "Mileage, trips and efficiency — ready whenever you need them."
+        }
+      }
+    },
+    "industries": {
+      "eyebrow": "Industries",
+      "title": "One platform for every kind of fleet"
+    },
+    "cta": {
+      "title": "Ready to see your fleet like this?",
+      "text": "Leave a request and we will show the platform on your own vehicles."
+    }
   }
 }

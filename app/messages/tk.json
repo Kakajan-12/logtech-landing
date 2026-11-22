@@ -189,5 +189,69 @@
     "description": "GPS platformamyz bilen ulag serişdelerine gözegçilik ediň, ugurlary optimizasiýa ediň we çykdajylary azaldyň.",
     "cookiesDescription": "Hebent Tech bu saýtda cookie faýllaryny nähili ulanýar we olary nähili dolandyryp bolýar.",
     "privacyDescription": "Hebent Tech siziň beren şahsy maglumatlaryňyzy nähili ýygnaýar, ulanýar we goraýar."
+  },
+  "Showcase": {
+    "meta": {
+      "title": "Görkeziş",
+      "description": "Hebent Fleet GPS gözegçilik platformasy boýunça interaktiw 3D syýahat."
+    },
+    "hero": {
+      "eyebrow": "Hebent Fleet · hakyky wagtda",
+      "title": "Ähli awtoparkyňyz bir janly kartada",
+      "subtitle": "Her bir ulag, ugur we duralga — hakyky wagtda we 3D görnüşinde.",
+      "ctaSecondary": "Dowamyny görmek",
+      "hint": "Aýlamak üçin globusy süýşüriň",
+      "globeLabel": "Aşgabatdan eltip bermek ugurlary görkezilen 3D globus"
+    },
+    "stats": {
+      "brands": "enjam brendi",
+      "industries": "pudak",
+      "monitoring": "hakyky wagtda gözegçilik",
+      "steps": "işe başlamak üçin ädim"
+    },
+    "truck": {
+      "eyebrow": "Telematika",
+      "title": "Her ulagyň öz hekaýasy bar",
+      "text": "Tizlik, ýangyç, ýerleşiş we hereketlendiriji maglumatlary her sekuntda ulagdan dolandyryş paneliňize gelýär.",
+      "speed": "Tizlik",
+      "speedValue": "72 km/sag",
+      "fuel": "Ýangyç derejesi",
+      "fuelValue": "64%",
+      "gps": "GPS signaly",
+      "gpsValue": "12 hemra",
+      "engine": "Hereketlendiriji",
+      "engineValue": "Işleýär",
+      "hint": "Ýük maşynyny aýlamak üçin aşak süýşüriň",
+      "truckLabel": "GPS yzarlaýjyly ýük maşynynyň 3D modeli"
+    },
+    "features": {
+      "title": "Doly gözegçilik üçin döredildi",
+      "items": {
+        "tracking": {
+          "title": "Hakyky wagtda yzarlamak",
+          "text": "Her ulagy kartada her sekuntda täzelenýän görnüşde görüň."
+        },
+        "fuel": {
+          "title": "Ýangyç gözegçiligi",
+          "text": "Ýangyç ogurlygyny, boş durmagy we artykmaç gatnawlary wagtynda ýüze çykaryň."
+        },
+        "alerts": {
+          "title": "Akylly duýduryşlar",
+          "text": "Tizligiň artmagy, ugurdan sowulmak we meýilleşdirilmedik duralgalar barada habar alyň."
+        },
+        "reports": {
+          "title": "Awtomatik hasabatlar",
+          "text": "Geçilen ýol, gatnawlar we netijelilik — gerek wagty taýýar."
+        }
+      }
+    },
+    "industries": {
+      "eyebrow": "Pudaklar",
+      "title": "Islendik awtopark üçin bir platforma"
+    },
+    "cta": {
+      "title": "Awtoparkyňyzy şeýle görmek isleýärsiňizmi?",
+      "text": "Haýyş galdyryň — platformany öz ulaglaryňyzda görkezeris."
+    }
   }
 }
