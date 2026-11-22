@@ -77,6 +77,12 @@ export default function Header() {
   const localeSwitchHref = pathname || "/";
 
   const isActive = (id: string) => hash === `#${id}`;
+  const onShowcase = pathname === "/showcase";
+
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setLangOpen(false);
+  };
 
   // On a page that has the section: smooth-scroll in place.
   // Otherwise (e.g. /cookies): let the Link navigate to `/#id` on the home page.
@@ -222,6 +228,16 @@ export default function Header() {
                 {t(`nav.${key}`)}
               </Link>
             ))}
+            <Link
+              href="/showcase"
+              aria-current={onShowcase ? "page" : undefined}
+              className={`font-jost text-base font-bold transition-colors ${
+                onShowcase ? "text-brand" : "text-black hover:text-brand"
+              }`}
+              onClick={closeMenus}
+            >
+              {t("showcase")}
+            </Link>
           </nav>
 
           <div className="relative flex items-center gap-3">
@@ -279,6 +295,18 @@ export default function Header() {
                   {t(`nav.${key}`)}
                 </Link>
               ))}
+              <Link
+                href="/showcase"
+                aria-current={onShowcase ? "page" : undefined}
+                className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors ${
+                  onShowcase
+                    ? "text-brand bg-brand/10"
+                    : "text-neutral-900 hover:bg-white/40"
+                }`}
+                onClick={closeMenus}
+              >
+                {t("showcase")}
+              </Link>
             </nav>
           </div>
         </div>
