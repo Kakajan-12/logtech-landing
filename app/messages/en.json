@@ -1,7 +1,5 @@
 {
   "Header": {
-    "phone": "+993 71 397739",
-    "email": "info@hebent.tech",
     "nav": {
       "benefits": "Benefits",
       "industry": "Industry",
@@ -29,43 +27,6 @@
       "support": "Technical support in Ashgabat",
       "brands": "40+ equipment brands",
       "api": "Ready Enterprise API"
-    }
-  },
-  "WhyLoseMoney": {
-    "title": "Why companies lose money",
-    "cards": {
-      "fuel": {
-        "title": "Fuel costs keep rising",
-        "items": {
-          "0": "Fuel consumption control",
-          "1": "Detection of unnecessary trips",
-          "2": "Route optimization"
-        }
-      },
-      "control": {
-        "title": "No fleet visibility",
-        "items": {
-          "0": "Location of all vehicles on the map",
-          "1": "Control of routes and stops",
-          "2": "Alerts when a route is deviated from"
-        }
-      },
-      "drivers": {
-        "title": "No transparency in driver behaviour",
-        "items": {
-          "0": "Monitoring driver performance",
-          "1": "Vehicle speed control",
-          "2": "Better discipline across the team"
-        }
-      },
-      "analytics": {
-        "title": "Hard to analyse fleet performance",
-        "items": {
-          "0": "Automated reports",
-          "1": "Trip and mileage analytics",
-          "2": "Transport efficiency monitoring"
-        }
-      }
     }
   },
   "Advantages": {
@@ -144,14 +105,7 @@
     "imageAlt": "Logistics, GPS monitoring, and partnership"
   },
   "Partners": {
-    "title": "Our partners",
-    "stripAlt": "Partner logos",
-    "brands": {
-      "shantui": "SHANTUI",
-      "xcmg": "XCMG",
-      "cnhtc": "CNHTC",
-      "lovol": "LOVOL"
-    }
+    "title": "Our partners"
   },
   "Footer": {
     "tagline": "Complete GPS fleet management solution for modern businesses",
