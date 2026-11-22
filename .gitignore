@@ -42,3 +42,6 @@ next-env.d.ts
 
 # IDE
 .idea/
+
+# source 3D models (large, converted copy lives in public/models)
+/Truck/
