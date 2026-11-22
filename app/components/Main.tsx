@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/app/i18n/navigation";
-import main from "../../public/main.png";
+import main from "../../public/main.jpg";
 import { GoCheck } from "react-icons/go";
 import { scrollToSection } from "@/lib/scrollToSection";
 
@@ -20,7 +20,7 @@ export default function Main() {
           fill
           priority
           className="object-cover object-center min-h-[90vh]"
-          sizes="100vw 100vh"
+          sizes="100vw"
         />
         <div
           className="absolute inset-0 bg-linear-to-r from-black/10 to-black/0 min-h-[90vh]"
