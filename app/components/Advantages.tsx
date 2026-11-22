@@ -14,7 +14,7 @@ import {
 import { RxDoubleArrowRight } from "react-icons/rx";
 import { RxDoubleArrowDown } from "react-icons/rx";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const rows = [
   { id: "fuel" as const, PainIcon: Fuel, SolutionIcon: Gauge },

@@ -1,7 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { Cpu, Link, MonitorSmartphone } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const steps = ["install", "connect", "monitor"] as const;
 
