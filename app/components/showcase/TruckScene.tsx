@@ -1,31 +1,55 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, RoundedBox } from "@react-three/drei";
+import { ContactShadows, useGLTF } from "@react-three/drei";
 import type { MotionValue } from "motion/react";
-import { useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 const BRAND = "#0044e1";
 const BG = "#020b24";
-const WHEEL_X = [2.45, 0.2, -1.5, -2.4];
 const DASH_COUNT = 16;
 const DASH_SPACING = 2.4;
 const ROAD_LENGTH = DASH_COUNT * DASH_SPACING;
 
-/** Low-poly truck built from primitives — no external model needed. */
+// "Car Kit" by Kenney (CC0), see public/models/CREDITS.txt.
+// The model faces +Z and is ~3.25 units long.
+const MODEL_URL = "/models/delivery.glb";
+const MODEL_SCALE = 1.9;
+const WHEELS = [
+  "wheel-front-left",
+  "wheel-front-right",
+  "wheel-back-left",
+  "wheel-back-right",
+];
+
 function Truck({ animate }: { animate: boolean }) {
-  const body = useRef<THREE.Group>(null);
-  const wheels = useRef<(THREE.Group | null)[]>([]);
+  const { scene } = useGLTF(MODEL_URL);
   const beacon = useRef<THREE.Mesh>(null);
+
+  const parts = useMemo(
+    () => ({
+      wheels: WHEELS.map((name) => scene.getObjectByName(name)).filter(
+        (o): o is THREE.Object3D => !!o,
+      ),
+      body: ["body", "door"]
+        .map((name) => scene.getObjectByName(name))
+        .filter((o): o is THREE.Object3D => !!o),
+    }),
+    [scene],
+  );
+  const bodyBaseY = useMemo(
+    () => parts.body.map((o) => o.position.y),
+    [parts],
+  );
 
   useFrame(({ clock }, delta) => {
     const t = clock.elapsedTime;
     if (animate) {
-      wheels.current.forEach((w) => {
-        if (w) w.rotation.z -= delta * 5;
-      });
-      if (body.current) body.current.position.y = Math.sin(t * 7) * 0.012;
+      // wheels roll forward (+Z in model space)
+      parts.wheels.forEach((w) => (w.rotation.x += delta * 9));
+      const bob = Math.sin(t * 7) * 0.006;
+      parts.body.forEach((o, i) => (o.position.y = bodyBaseY[i] + bob));
     }
     if (beacon.current) {
       const k = animate ? (t * 0.8) % 1 : 0.3;
@@ -35,85 +59,25 @@ function Truck({ animate }: { animate: boolean }) {
   });
 
   return (
-    <group>
-      <group ref={body}>
-        {/* chassis */}
-        <mesh position={[0, 0.6, 0]} castShadow>
-          <boxGeometry args={[6.2, 0.25, 1.1]} />
-          <meshStandardMaterial color="#1f2937" roughness={0.7} />
+    // rotate so the truck drives along +X, the direction the road moves
+    <group rotation={[0, Math.PI / 2, 0]} scale={MODEL_SCALE}>
+      <primitive object={scene} />
+      {/* GPS tracker on the front of the cargo box roof */}
+      <group position={[0, 1.66, 0.25]}>
+        <mesh>
+          <cylinderGeometry args={[0.05, 0.065, 0.06, 16]} />
+          <meshStandardMaterial color="#38e0a0" emissive="#38e0a0" emissiveIntensity={1.5} />
         </mesh>
-        {/* cab */}
-        <RoundedBox args={[1.5, 1.6, 1.9]} radius={0.14} position={[2.45, 1.5, 0]} castShadow>
-          <meshStandardMaterial color={BRAND} metalness={0.35} roughness={0.35} />
-        </RoundedBox>
-        {/* windshield + side windows */}
-        <mesh position={[3.21, 1.8, 0]}>
-          <boxGeometry args={[0.04, 0.7, 1.6]} />
-          <meshStandardMaterial color="#0b1530" metalness={0.9} roughness={0.1} />
+        <mesh ref={beacon} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.035, 0]}>
+          <ringGeometry args={[0.085, 0.105, 32]} />
+          <meshBasicMaterial color="#38e0a0" transparent side={THREE.DoubleSide} />
         </mesh>
-        <mesh position={[2.65, 1.85, 0]}>
-          <boxGeometry args={[0.75, 0.5, 1.92]} />
-          <meshStandardMaterial color="#0b1530" metalness={0.9} roughness={0.1} />
-        </mesh>
-        {/* headlights */}
-        {[-0.7, 0.7].map((z) => (
-          <mesh key={z} position={[3.21, 0.95, z]}>
-            <boxGeometry args={[0.04, 0.16, 0.3]} />
-            <meshStandardMaterial color="#fff6d5" emissive="#ffe9a8" emissiveIntensity={3} />
-          </mesh>
-        ))}
-        {/* trailer */}
-        <RoundedBox args={[4.6, 2.1, 2]} radius={0.06} position={[-0.75, 1.8, 0]} castShadow>
-          <meshStandardMaterial color="#f3f6fb" roughness={0.45} />
-        </RoundedBox>
-        <mesh position={[-0.75, 1.15, 0]}>
-          <boxGeometry args={[4.62, 0.16, 2.02]} />
-          <meshStandardMaterial color={BRAND} emissive={BRAND} emissiveIntensity={0.4} />
-        </mesh>
-        {/* tail lights */}
-        {[-0.8, 0.8].map((z) => (
-          <mesh key={z} position={[-3.06, 0.95, z]}>
-            <boxGeometry args={[0.04, 0.14, 0.24]} />
-            <meshStandardMaterial color="#ff4d4d" emissive="#ff2a2a" emissiveIntensity={2.5} />
-          </mesh>
-        ))}
-        {/* GPS tracker on the cab roof */}
-        <group position={[2.45, 2.32, 0]}>
-          <mesh>
-            <cylinderGeometry args={[0.09, 0.12, 0.12, 16]} />
-            <meshStandardMaterial color="#38e0a0" emissive="#38e0a0" emissiveIntensity={1.5} />
-          </mesh>
-          <mesh ref={beacon} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.07, 0]}>
-            <ringGeometry args={[0.16, 0.2, 32]} />
-            <meshBasicMaterial color="#38e0a0" transparent side={THREE.DoubleSide} />
-          </mesh>
-        </group>
       </group>
-
-      {/* wheels: hexagonal hub caps make the rotation visible */}
-      {WHEEL_X.flatMap((x, i) =>
-        [-0.95, 0.95].map((z, j) => (
-          <group
-            key={`${i}-${j}`}
-            position={[x, 0.45, z]}
-            ref={(el) => {
-              wheels.current[i * 2 + j] = el;
-            }}
-          >
-            <mesh rotation={[Math.PI / 2, 0, 0]} castShadow>
-              <cylinderGeometry args={[0.45, 0.45, 0.32, 28]} />
-              <meshStandardMaterial color="#0d0f14" roughness={0.85} />
-            </mesh>
-            <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, z > 0 ? 0.17 : -0.17]}>
-              <cylinderGeometry args={[0.22, 0.22, 0.02, 6]} />
-              <meshStandardMaterial color="#9aa4b2" metalness={0.8} roughness={0.3} />
-            </mesh>
-          </group>
-        )),
-      )}
     </group>
   );
 }
+
+useGLTF.preload(MODEL_URL);
 
 function Diorama({
   progress,
@@ -169,7 +133,9 @@ function Diorama({
           <meshStandardMaterial color="#cfe0ff" emissive="#cfe0ff" emissiveIntensity={0.6} />
         </mesh>
       ))}
-      <Truck animate={animate} />
+      <Suspense fallback={null}>
+        <Truck animate={animate} />
+      </Suspense>
     </group>
   );
 }
@@ -193,9 +159,9 @@ export default function TruckScene({
       fallback={null}
     >
       <fog attach="fog" args={[BG, 12, 24]} />
-      <ambientLight intensity={0.55} />
-      <hemisphereLight args={["#b9d0ff", BG, 0.7]} />
-      <directionalLight position={[6, 9, 4]} intensity={2} />
+      <ambientLight intensity={0.8} />
+      <hemisphereLight args={["#b9d0ff", BG, 0.9]} />
+      <directionalLight position={[6, 9, 4]} intensity={2.2} />
       <pointLight position={[-4, 2.5, 3]} intensity={25} distance={14} color={BRAND} />
       <Diorama progress={progress} animate={animate} />
       <ContactShadows position={[0, 0.02, 0]} scale={12} blur={2.4} far={4} opacity={0.6} />
