@@ -1,10 +1,8 @@
+import { setRequestLocale } from "next-intl/server";
 import BePartner from "../components/BePartner";
-import Industry from "../components/Industry";
-import Main from "../components/Main";
 import Partners from "../components/Partners";
 import Solution from "../components/Solution";
-import Advantages from "../components/Advantages";
-import { setRequestLocale } from "next-intl/server";
+import Showcase from "../components/showcase/Showcase";
 
 export default async function Home({
   params,
@@ -15,13 +13,10 @@ export default async function Home({
   setRequestLocale(lang);
 
   return (
-    <>
-      <Main />
-      <Advantages />
-      <Industry />
+    <Showcase>
       <Solution />
       <BePartner />
       <Partners />
-    </>
+    </Showcase>
   );
 }

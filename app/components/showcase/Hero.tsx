@@ -4,8 +4,10 @@ import dynamic from "next/dynamic";
 import { Fragment, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/app/i18n/navigation";
+import { Truck } from "lucide-react";
 import { scrollToSection } from "@/lib/scrollToSection";
+import { useDemoModal } from "../demo/DemoModal";
+import type { CityKey } from "./GlobeScene";
 
 // three.js only loads in the browser and only on this page
 const GlobeScene = dynamic(() => import("./GlobeScene"), {
@@ -14,6 +16,19 @@ const GlobeScene = dynamic(() => import("./GlobeScene"), {
 });
 
 const ease = [0.22, 1, 0.36, 1] as const;
+const CITY_KEYS: CityKey[] = [
+  "ashgabat",
+  "istanbul",
+  "moscow",
+  "dubai",
+  "almaty",
+  "tehran",
+  "baku",
+  "tashkent",
+  "beijing",
+  "berlin",
+  "delhi",
+];
 
 export default function Hero() {
   const t = useTranslations("Showcase.hero");
@@ -22,11 +37,15 @@ export default function Hero() {
   const inView = useInView(ref);
   const reduce = useReducedMotion() ?? false;
   const words = t("title").split(" ");
+  const demo = useDemoModal();
+  const labels = Object.fromEntries(
+    CITY_KEYS.map((k) => [k, t(`cities.${k}`)]),
+  ) as Record<CityKey, string>;
 
   return (
     <section
       ref={ref}
-      className="relative isolate flex min-h-[calc(100svh-7rem)] items-center overflow-hidden bg-[#020b24] text-white"
+      className="relative isolate flex min-h-[calc(100svh-7rem)] items-center overflow-hidden bg-[#02150c] text-white"
     >
       {/* glow behind the globe */}
       <div
@@ -38,11 +57,12 @@ export default function Hero() {
         role="img"
         aria-label={t("globeLabel")}
       >
-        <GlobeScene active={inView} animate={!reduce} />
+        <GlobeScene active={inView} animate={!reduce} labels={labels} />
       </div>
 
-      <div className="container relative mx-auto px-5 py-20 lg:px-10">
-        <div className="max-w-xl">
+      {/* full-width wrapper lets drags through to the globe; only the text column catches them */}
+      <div className="pointer-events-none container relative mx-auto px-5 py-20 lg:px-10">
+        <div className="pointer-events-auto max-w-xl">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,16 +108,14 @@ export default function Hero() {
             transition={{ delay: 0.75, duration: 0.7, ease }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <Link
-              href="/#contacts"
-              onClick={(e) => {
-                if (scrollToSection("contacts")) e.preventDefault();
-              }}
+            <button
+              type="button"
+              onClick={demo.open}
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_40px_-8px] shadow-brand transition-transform hover:scale-[1.03]"
             >
               <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <span className="relative">{tHeader("getDemo")}</span>
-            </Link>
+            </button>
             <button
               type="button"
               onClick={() => scrollToSection("sc-telematics")}
@@ -107,14 +125,37 @@ export default function Hero() {
             </button>
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4, duration: 1 }}
-            className="mt-12 hidden text-xs uppercase tracking-[0.25em] text-white/40 lg:block"
+            className="mt-12"
           >
-            {t("hint")}
-          </motion.p>
+            {/* what the marks on the globe mean */}
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
+              <li className="inline-flex items-center gap-2">
+                <Truck className="size-4 text-white" aria-hidden />
+                {t("legend.vehicle")}
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <span
+                  className="size-2.5 rounded-full bg-[#38e0a0]"
+                  aria-hidden
+                />
+                {t("legend.destination")}
+              </li>
+              <li className="inline-flex items-center gap-2">
+                <span
+                  className="size-3 rounded-full border-2 border-[#38e0a0] bg-[#38e0a0]/30"
+                  aria-hidden
+                />
+                {t("legend.hub")}
+              </li>
+            </ul>
+            <p className="mt-5 hidden text-xs uppercase tracking-[0.25em] text-white/40 lg:block">
+              {t("hint")}
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

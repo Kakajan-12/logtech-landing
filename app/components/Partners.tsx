@@ -26,10 +26,10 @@ export default function Partners() {
   const t = useTranslations("Partners");
 
   return (
-    <section className="mx-auto overflow-hidden bg-white scroll-mt-32 md:scroll-mt-36 py-15">
+    <section className="mx-auto overflow-hidden bg-white scroll-mt-16 py-15">
       <h2
         id="partners-heading"
-        className="mb-8 text-center font-play text-2xl font-bold tracking-tight text-[#002148] sm:mb-10 sm:text-3xl"
+        className="mb-8 text-center font-play text-2xl font-bold tracking-tight text-[#04331D] sm:mb-10 sm:text-3xl"
       >
         {t("title")}
       </h2>

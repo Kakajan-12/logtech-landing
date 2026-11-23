@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
         destination: "/:lang/privacy-policy",
         permanent: true,
       },
+      // The showcase became the home page
+      {
+        source: "/:lang(en|ru|tk)/showcase",
+        destination: "/:lang",
+        permanent: true,
+      },
     ];
   },
 };

@@ -3,13 +3,18 @@
 import Image from "next/image";
 import { useTranslations, useLocale, useMessages } from "next-intl";
 import { Link, usePathname } from "@/app/i18n/navigation";
-import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
+import { Check, ChevronDown, Globe, Mail, Menu, Phone, X } from "lucide-react";
 import { routing } from "@/app/i18n/routing";
-import { CiGlobe } from "react-icons/ci";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { FaXmark } from "react-icons/fa6";
 import { scrollToSection } from "@/lib/scrollToSection";
+import { useDemoModal } from "@/app/components/demo/DemoModal";
+
+const PHONE = "+993 71 397739";
+const PHONE_HREF = "tel:+99371397739";
+const EMAIL = "info@hebent.tech";
+const DEMO_BUTTON =
+  "inline-flex items-center justify-center rounded-full bg-[linear-gradient(177deg,#0F833F_0.23%,#08945A_96.91%)] font-semibold text-white shadow-md shadow-brand/25 transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-lg hover:shadow-brand/30";
 
 export default function Header() {
   const t = useTranslations("Header");
@@ -20,9 +25,21 @@ export default function Header() {
   const locale = useLocale();
   const pathname = usePathname();
   const [hash, setHash] = useState("");
+  const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
+  const demo = useDemoModal();
+  const openDemo = () => {
+    setMenuOpen(false);
+    setLangOpen(false);
+    demo.open();
+  };
+
+  // thin brand-coloured reading progress line under the header
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 40 });
 
   useEffect(() => {
     const sync = () => setHash(window.location.hash);
@@ -49,6 +66,38 @@ export default function Header() {
     return () => cancelAnimationFrame(frame);
   }, [hash]);
 
+  // Compact header once the page is scrolled
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the menu item of the section in the middle of the screen
+  useEffect(() => {
+    const sections = navKeys
+      .map((key) => document.getElementById(key))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!sections.length) return;
+    const visible = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) =>
+          e.isIntersecting
+            ? visible.add(e.target.id)
+            : visible.delete(e.target.id),
+        );
+        setActive(navKeys.find((k) => visible.has(k)) ?? "");
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+    // navKeys comes from static messages; re-run only when the page changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, locale]);
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -57,14 +106,14 @@ export default function Header() {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!langOpen) return;
+    if (!langOpen && !menuOpen) return;
     const close = (e: PointerEvent) => {
-      if (!langRef.current?.contains(e.target as Node)) {
-        setLangOpen(false);
-      }
+      if (!langRef.current?.contains(e.target as Node)) setLangOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLangOpen(false);
+      if (e.key !== "Escape") return;
+      setLangOpen(false);
+      setMenuOpen(false);
     };
     document.addEventListener("pointerdown", close);
     document.addEventListener("keydown", onKey);
@@ -72,17 +121,9 @@ export default function Header() {
       document.removeEventListener("pointerdown", close);
       document.removeEventListener("keydown", onKey);
     };
-  }, [langOpen]);
+  }, [langOpen, menuOpen]);
 
   const localeSwitchHref = pathname || "/";
-
-  const isActive = (id: string) => hash === `#${id}`;
-  const onShowcase = pathname === "/showcase";
-
-  const closeMenus = () => {
-    setMenuOpen(false);
-    setLangOpen(false);
-  };
 
   // On a page that has the section: smooth-scroll in place.
   // Otherwise (e.g. /cookies): let the Link navigate to `/#id` on the home page.
@@ -91,9 +132,6 @@ export default function Header() {
     setLangOpen(false);
     if (scrollToSection(id)) e.preventDefault();
   };
-
-  const langShort = (l: string) =>
-    l === "ru" ? "RU" : l === "tk" ? "TM" : l.toUpperCase();
 
   const scrollToHomeTop = () => {
     setMenuOpen(false);
@@ -106,103 +144,58 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-light-blue/60 shadow-sm">
-      <div className="contacts flex items-center justify-between bg-white text-sm text-[#4D4D4D] font-jost">
-        <div className="flex w-full items-center justify-between gap-2 py-3 container mx-auto px-5 lg:px-10">
-          <div className="flex items-center gap-x-5 md:gap-x-9 text-xs ">
+    <header
+      className={`sticky top-0 z-50 transition-transform duration-300 ${
+        scrolled ? "-translate-y-9" : ""
+      }`}
+    >
+      {/* Contact strip: slides away with the header offset once you scroll */}
+      <div className="h-9 bg-[#04331D] font-jost text-xs text-white/75">
+        <div className="container mx-auto flex h-full items-center justify-between gap-4 px-5 lg:px-10">
+          <div className="flex items-center gap-x-5 md:gap-x-8">
             <a
-              href="tel:+99371397739"
-              className="inline-flex items-center gap-1 text-[#4D4D4D] leading-none hover:text-[#0044E1]"
+              href={PHONE_HREF}
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              <HiOutlinePhone
-                className="block size-4 shrink-0 text-current"
-                aria-hidden
-              />
-              <span className="shrink-0 leading-none tabular-nums pt-1">
-                +993 71 397739
-              </span>
+              <Phone className="size-3.5 shrink-0" aria-hidden />
+              <span className="tabular-nums">{PHONE}</span>
             </a>
             <a
-              href={`mailto:info@hebent.tech`}
-              className="inline-flex items-center gap-1 text-[#4D4D4D] leading-none hover:text-[#0044E1]"
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              <HiOutlineMail
-                className="block size-4 shrink-0 text-current"
-                aria-hidden
-              />
-              <span className="leading-none whitespace-nowrap pt-1">
-                info@hebent.tech
-              </span>
+              <Mail className="size-3.5 shrink-0" aria-hidden />
+              <span className="whitespace-nowrap">{EMAIL}</span>
             </a>
           </div>
-          <div ref={langRef} className="relative z-70 shrink-0 text-black">
-            <button
-              type="button"
-              className="inline-flex items-center gap-1 rounded-md font-bold font-jost py-2 px-2 transition-colors hover:bg-neutral-100"
-              aria-expanded={langOpen}
-              aria-haspopup="listbox"
-              aria-label={t("language")}
-              onClick={() => {
-                setMenuOpen(false);
-                setLangOpen((o) => !o);
-              }}
-            >
-              <CiGlobe className="size-5 shrink-0" aria-hidden />
-              <span className="font-play text-xs font-semibold tracking-wide sm:hidden">
-                {langShort(locale)}
-              </span>
-              <span className="hidden font-jost text-sm sm:inline">
-                {t(`langNames.${locale}`)}
-              </span>
-            </button>
-            {langOpen ? (
-              <ul
-                className="absolute right-0 top-full z-100 mt-1.5 w-13 overflow-hidden rounded border border-neutral-800/20 bg-white/40 backdrop-blur-sm py-0 shadow-xl font-bold"
-                role="listbox"
-                aria-label={t("language")}
-              >
-                {routing.locales
-                  .filter((l) => l !== locale)
-                  .map((l, i) => (
-                    <li
-                      key={l}
-                      role="option"
-                      aria-selected={locale === l}
-                      className={
-                        i > 0 ? "border-t border-neutral-200" : undefined
-                      }
-                    >
-                      <Link
-                        href={localeSwitchHref}
-                        locale={l}
-                        scroll={false}
-                        className={`block px-4 py-3 text-center text-sm sm:px-3 sm:py-2 ${
-                          locale === l
-                            ? "bg-blue-50 text-[#0044E1]"
-                            : "text-neutral-800 hover:bg-neutral-50 hover:text-[#0044E1]"
-                        }`}
-                        onClick={() => setLangOpen(false)}
-                      >
-                        <span className="sm:hidden">{langShort(l)}</span>
-                        <span className="hidden sm:inline">
-                          {t(`langNames.${l}`)}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            ) : null}
-          </div>
+          <span className="hidden items-center gap-2 md:inline-flex">
+            <span className="relative flex size-1.5">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-1.5 rounded-full bg-emerald-400" />
+            </span>
+            {t("status")}
+          </span>
         </div>
       </div>
 
-      <div className="flex items-center justify-between py-3 bg-white/70 backdrop-blur-sm">
-        <div className="container  mx-auto flex items-center justify-between gap-4 px-5 lg:px-10">
+      <div
+        className={`relative border-b backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-300 ${
+          scrolled || menuOpen
+            ? "border-black/5 bg-white/95 shadow-[0_8px_30px_-12px_rgba(4,51,29,0.25)]"
+            : "border-transparent bg-white"
+        }`}
+      >
+        <div
+          className={`container mx-auto flex items-center justify-between gap-4 px-5 transition-[height] duration-300 lg:px-10 ${
+            scrolled ? "h-16" : "h-18"
+          }`}
+        >
           <Link
             href="/"
             scroll={false}
-            className="flex shrink-0 items-center gap-3"
+            className="flex shrink-0 items-center"
             onClick={scrollToHomeTop}
+            aria-label={t("brand")}
           >
             <Image
               src="/logo.svg"
@@ -215,102 +208,207 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-11 lg:flex" aria-label="Main">
-            {navKeys.map((key) => (
-              <Link
-                key={key}
-                href={`/#${key}`}
-                className={`font-jost text-base font-medium transition-colors ${
-                  isActive(key) ? "text-brand" : "text-black hover:text-brand"
-                }`}
-                onClick={goToSection(key)}
-              >
-                {t(`nav.${key}`)}
-              </Link>
-            ))}
-            <Link
-              href="/showcase"
-              aria-current={onShowcase ? "page" : undefined}
-              className={`font-jost text-base font-medium transition-colors ${
-                onShowcase ? "text-brand" : "text-black hover:text-brand"
-              }`}
-              onClick={closeMenus}
-            >
-              {t("showcase")}
-            </Link>
-          </nav>
-
-          <div className="relative flex items-center gap-3">
-            <Link
-              href="/#contacts"
-              className="rounded-sm bg-brand w-30 items-center justify-center text-center py-2.5 text-xs lg:text-base font-semibold text-white transition-opacity hover:opacity-90 lg:inline-flex"
-              onClick={goToSection("contacts")}
-            >
-              {t("getDemo")}
-            </Link>
-
-            <button
-              type="button"
-              className="inline-flex size-5 items-center justify-center rounded-lg text-[#1C1B1F] lg:hidden"
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
-              onClick={() =>
-                setMenuOpen((o) => {
-                  const next = !o;
-                  if (next) setLangOpen(false);
-                  return next;
-                })
-              }
-            >
-              <span className="sr-only">
-                {menuOpen ? t("closeMenu") : t("openMenu")}
-              </span>
-              {menuOpen ? (
-                <span className="text-xl leading-none">
-                  <FaXmark className="size-4" aria-hidden />
-                </span>
-              ) : (
-                <RxHamburgerMenu className="size-4" aria-hidden />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {menuOpen ? (
-        <div className="pointer-events-none absolute inset-x-0 top-full z-100 container mx-auto flex justify-end px-5 lg:hidden">
-          <div className="pointer-events-auto overflow-hidden border-l border-b border-white/30 bg-white shadow-sm">
-            <nav className="flex flex-col gap-3 pt-3" aria-label="Main mobile">
-              {navKeys.map((key) => (
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+            {navKeys.map((key) => {
+              const on = active === key;
+              return (
                 <Link
                   key={key}
                   href={`/#${key}`}
-                  className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors last:border-0  ${
-                    isActive(key)
-                      ? "text-brand bg-brand/10"
-                      : "text-neutral-900 hover:bg-white/40"
+                  aria-current={on ? "location" : undefined}
+                  className={`group relative rounded-full px-4 py-2 font-jost text-[15px] font-medium transition-colors ${
+                    on ? "text-brand" : "text-neutral-800 hover:text-brand"
                   }`}
                   onClick={goToSection(key)}
                 >
                   {t(`nav.${key}`)}
+                  <span
+                    className={`absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-brand transition-transform duration-300 ${
+                      on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                    aria-hidden
+                  />
                 </Link>
-              ))}
-              <Link
-                href="/showcase"
-                aria-current={onShowcase ? "page" : undefined}
-                className={`mt-1 px-3 py-1 text-sm font-semibold transition-colors ${
-                  onShowcase
-                    ? "text-brand bg-brand/10"
-                    : "text-neutral-900 hover:bg-white/40"
-                }`}
-                onClick={closeMenus}
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div ref={langRef} className="relative">
+              <button
+                type="button"
+                className="inline-flex h-10 items-center gap-1.5 rounded-full px-3 font-jost text-sm font-bold text-neutral-800 transition-colors hover:bg-brand/10 hover:text-brand"
+                aria-expanded={langOpen}
+                aria-haspopup="listbox"
+                aria-label={t("language")}
+                onClick={() => {
+                  setMenuOpen(false);
+                  setLangOpen((o) => !o);
+                }}
               >
-                {t("showcase")}
-              </Link>
-            </nav>
+                <Globe className="size-4.5 shrink-0" aria-hidden />
+                {t(`langNames.${locale}`)}
+                <ChevronDown
+                  className={`size-3.5 transition-transform ${langOpen ? "rotate-180" : ""}`}
+                  aria-hidden
+                />
+              </button>
+              <AnimatePresence>
+                {langOpen && (
+                  <motion.ul
+                    initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 top-full z-100 mt-2 w-44 origin-top-right overflow-hidden rounded-2xl border border-black/5 bg-white p-1.5 shadow-xl"
+                    role="listbox"
+                    aria-label={t("language")}
+                  >
+                    {routing.locales.map((l) => (
+                      <li key={l} role="option" aria-selected={locale === l}>
+                        <Link
+                          href={localeSwitchHref}
+                          locale={l}
+                          scroll={false}
+                          className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+                            locale === l
+                              ? "bg-brand/10 text-brand"
+                              : "text-neutral-800 hover:bg-neutral-100"
+                          }`}
+                          onClick={() => setLangOpen(false)}
+                        >
+                          <span>
+                            {t(`langFull.${l}`)}
+                            <span className="ml-2 text-xs font-bold text-neutral-400">
+                              {t(`langNames.${l}`)}
+                            </span>
+                          </span>
+                          {locale === l && (
+                            <Check className="size-4" aria-hidden />
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <button
+              type="button"
+              className={`${DEMO_BUTTON} hidden h-10 px-6 text-sm sm:inline-flex lg:text-base`}
+              onClick={openDemo}
+            >
+              {t("getDemo")}
+            </button>
+
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-full text-neutral-900 transition-colors hover:bg-brand/10 lg:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? t("closeMenu") : t("openMenu")}
+              onClick={() => {
+                setLangOpen(false);
+                setMenuOpen((o) => !o);
+              }}
+            >
+              {menuOpen ? (
+                <X className="size-5" aria-hidden />
+              ) : (
+                <Menu className="size-5" aria-hidden />
+              )}
+            </button>
           </div>
         </div>
-      ) : null}
+
+        <motion.div
+          className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[linear-gradient(90deg,#0F833F,#38e0a0)]"
+          style={{ scaleX: progress }}
+          aria-hidden
+        />
+      </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <motion.button
+              type="button"
+              aria-label={t("closeMenu")}
+              tabIndex={-1}
+              // absolute, not fixed: the header's translate would make "fixed" header-relative
+              className="absolute inset-x-0 top-full -z-10 h-svh bg-[#02150c]/40 backdrop-blur-[2px] lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+            />
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-x-0 top-full border-b border-black/5 bg-white shadow-xl lg:hidden"
+            >
+              <nav
+                className="container mx-auto flex flex-col px-5 pt-3 pb-2"
+                aria-label="Main mobile"
+              >
+                {navKeys.map((key, i) => (
+                  <motion.div
+                    key={key}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * i, duration: 0.2 }}
+                  >
+                    <Link
+                      href={`/#${key}`}
+                      aria-current={active === key ? "location" : undefined}
+                      className={`flex items-center justify-between rounded-xl px-3 py-3.5 text-base font-bold transition-colors ${
+                        active === key
+                          ? "bg-brand/10 text-brand"
+                          : "text-neutral-900 hover:bg-neutral-100"
+                      }`}
+                      onClick={goToSection(key)}
+                    >
+                      {t(`nav.${key}`)}
+                      <span className="text-xs font-semibold text-neutral-300 tabular-nums">
+                        0{i + 1}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+              <div className="container mx-auto flex flex-col gap-3 border-t border-neutral-100 px-5 pt-4 pb-6">
+                <div className="flex flex-wrap gap-x-6 gap-y-2 px-3 text-sm text-neutral-600">
+                  <a
+                    href={PHONE_HREF}
+                    className="inline-flex items-center gap-2 hover:text-brand"
+                  >
+                    <Phone className="size-4" aria-hidden />
+                    <span className="tabular-nums">{PHONE}</span>
+                  </a>
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="inline-flex items-center gap-2 hover:text-brand"
+                  >
+                    <Mail className="size-4" aria-hidden />
+                    {EMAIL}
+                  </a>
+                </div>
+                <button
+                  type="button"
+                  className={`${DEMO_BUTTON} h-12 w-full text-base`}
+                  onClick={openDemo}
+                >
+                  {t("getDemo")}
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

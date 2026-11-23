@@ -26,10 +26,10 @@ export default function Footer() {
   return (
     <footer
       id="contacts"
-      className="relative isolate mt-auto overflow-hidden text-white scroll-mt-32 md:scroll-mt-36"
+      className="relative isolate mt-auto overflow-hidden text-white scroll-mt-16"
     >
       <div
-        className="absolute inset-0 bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]"
+        className="absolute inset-0 bg-[linear-gradient(177deg,#0F833F_0.23%,#08945A_96.91%)]"
         aria-hidden
       />
       <div
@@ -68,7 +68,7 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex size-6 md:size-10 items-center justify-center rounded-full bg-white text-[#0044E1] transition-transform hover:scale-105 hover:bg-white/95"
+                    className="inline-flex size-6 md:size-10 items-center justify-center rounded-full bg-white text-brand transition-transform hover:scale-105 hover:bg-white/95"
                     aria-label={name}
                   >
                     <Icon className="size-4 md:size-7" aria-hidden />
@@ -117,7 +117,7 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex size-6 md:size-12 items-center justify-center rounded-full bg-white text-[#0044E1] transition-transform hover:scale-105 hover:bg-white/95"
+                    className="inline-flex size-6 md:size-12 items-center justify-center rounded-full bg-white text-brand transition-transform hover:scale-105 hover:bg-white/95"
                     aria-label={name}
                   >
                     <Icon className="size-4 md:size-12" aria-hidden />
@@ -158,7 +158,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#2768FF] font-jost font-bold text-xs lg:text-base text-[#ACABAB] bg-linear-to-r from-[#0044E1] via-[#0075D6] to-[#0096CB]">
+      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#3FB37A] font-jost font-bold text-xs lg:text-base text-[#ACABAB] bg-[linear-gradient(177deg,#0F833F_0.23%,#08945A_96.91%)]">
         <div className="container mx-auto py-3 px-5 lg:px-10 flex items-center gap-2">
           <span className="leading-none pt-1">{year}</span>
           <p className="flex items-center gap-1">

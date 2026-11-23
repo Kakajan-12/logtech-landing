@@ -72,7 +72,7 @@ export default function Telematics() {
     <section
       id="sc-telematics"
       ref={section}
-      className="relative h-[280vh] bg-[#020b24] text-white"
+      className="relative h-[280vh] bg-[#02150c] text-white"
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden pt-32">
         <div className="container mx-auto grid flex-1 items-center gap-2 px-5 pb-4 sm:gap-6 sm:pb-10 lg:grid-cols-[1fr_1.4fr] lg:px-10">

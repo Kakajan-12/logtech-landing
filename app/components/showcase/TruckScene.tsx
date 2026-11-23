@@ -6,8 +6,8 @@ import type { MotionValue } from "motion/react";
 import { Suspense, useMemo, useRef } from "react";
 import * as THREE from "three";
 
-const BRAND = "#0044e1";
-const BG = "#020b24";
+const BRAND = "#0f833f";
+const BG = "#02150c";
 const DASH_COUNT = 16;
 const DASH_SPACING = 2.4;
 const ROAD_LENGTH = DASH_COUNT * DASH_SPACING;
@@ -111,7 +111,7 @@ function Diorama({
     <group ref={group}>
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[ROAD_LENGTH, ROAD_WIDTH]} />
-        <meshStandardMaterial color="#0a1633" roughness={1} />
+        <meshStandardMaterial color="#0a2116" roughness={1} />
       </mesh>
       {[-ROAD_WIDTH / 2, ROAD_WIDTH / 2].map((z) => (
         <mesh key={z} position={[0, 0.01, z]}>
@@ -128,7 +128,7 @@ function Diorama({
           }}
         >
           <boxGeometry args={[1, 0.01, 0.08]} />
-          <meshStandardMaterial color="#cfe0ff" emissive="#cfe0ff" emissiveIntensity={0.6} />
+          <meshStandardMaterial color="#d3f5e2" emissive="#d3f5e2" emissiveIntensity={0.6} />
         </mesh>
       ))}
       <Suspense fallback={null}>
@@ -158,7 +158,7 @@ export default function TruckScene({
     >
       <fog attach="fog" args={[BG, 12, 24]} />
       <ambientLight intensity={0.8} />
-      <hemisphereLight args={["#b9d0ff", BG, 0.9]} />
+      <hemisphereLight args={["#b5ecce", BG, 0.9]} />
       <directionalLight position={[6, 9, 4]} intensity={2.2} />
       <pointLight position={[-4, 2.5, 3]} intensity={25} distance={14} color={BRAND} />
       {/* procedural studio reflections for chrome and paint (no HDR download) */}

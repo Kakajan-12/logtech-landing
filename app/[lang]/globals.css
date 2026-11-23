@@ -11,7 +11,7 @@
   --card-foreground: oklch(0.145 0 0);
   --border: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --color-light-blue: #f4f9ff;
+  --color-light-green: #f2faf5;
 }
 
 @layer base {
@@ -32,8 +32,8 @@
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
-  --color-brand: #0044e1;
-  --color-light-blue: var(--color-light-blue);
+  --color-brand: #0f833f;
+  --color-light-green: var(--color-light-green);
   --font-jost: var(--font-jost-google), ui-sans-serif, system-ui, sans-serif;
   --font-play: var(--font-play-google), ui-sans-serif, system-ui, sans-serif;
 }
@@ -68,4 +68,34 @@ body {
   .footer-bg-pattern {
     --footer-bg-cell: 48px;
   }
+}
+
+/* demo request dialog: fade + rise in */
+.demo-dialog[open] {
+  animation: demo-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.demo-dialog[open]::backdrop {
+  animation: demo-fade 0.22s ease-out;
+}
+@keyframes demo-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+@keyframes demo-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-dialog[open],
+  .demo-dialog[open]::backdrop {
+    animation: none;
+  }
+}
+
+/* no page scroll behind an open dialog */
+body:has(dialog[open]) {
+  overflow: hidden;
 }

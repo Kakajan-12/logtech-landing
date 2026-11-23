@@ -12,10 +12,15 @@ import {
   useTransform,
 } from "motion/react";
 import { useTranslations } from "next-intl";
-import { Bell, FileBarChart, Fuel, MapPinned, type LucideIcon } from "lucide-react";
-import { Link } from "@/app/i18n/navigation";
-import { scrollToSection } from "@/lib/scrollToSection";
+import {
+  Bell,
+  FileBarChart,
+  Fuel,
+  MapPinned,
+  type LucideIcon,
+} from "lucide-react";
 import Hero from "./Hero";
+import { useDemoModal } from "../demo/DemoModal";
 import Telematics from "./Telematics";
 import IndustriesScroll from "./IndustriesScroll";
 
@@ -108,14 +113,19 @@ function TiltCard({ children }: { children: ReactNode }) {
         x.set(0);
         y.set(0);
       }}
-      style={{ rotateX, rotateY, transformPerspective: 900, transformStyle: "preserve-3d" }}
+      style={{
+        rotateX,
+        rotateY,
+        transformPerspective: 900,
+        transformStyle: "preserve-3d",
+      }}
       className="group relative h-full rounded-3xl border border-white bg-white p-8 shadow-lg shadow-brand/5"
     >
       <div
         className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(360px circle at var(--mx) var(--my), rgba(0,68,225,0.12), transparent 45%)",
+            "radial-gradient(360px circle at var(--mx) var(--my), rgba(15,131,63,0.12), transparent 45%)",
         }}
         aria-hidden
       />
@@ -134,14 +144,17 @@ const features: { key: string; Icon: LucideIcon }[] = [
 function Features() {
   const t = useTranslations("Showcase.features");
   return (
-    <section className="bg-light-blue py-24 lg:py-32">
+    <section
+      id="benefits"
+      className="scroll-mt-16 bg-light-green py-24 lg:py-32"
+    >
       <div className="container mx-auto px-5 lg:px-10">
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7, ease }}
-          className="mx-auto max-w-2xl text-center font-play text-3xl font-bold text-[#002148] sm:text-4xl lg:text-5xl"
+          className="mx-auto max-w-2xl text-center font-play text-3xl font-bold text-[#04331D] sm:text-4xl lg:text-5xl"
         >
           {t("title")}
         </motion.h2>
@@ -159,7 +172,7 @@ function Features() {
                   <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-brand text-white shadow-lg shadow-brand/30">
                     <Icon className="size-7" strokeWidth={1.6} aria-hidden />
                   </span>
-                  <h3 className="mt-6 text-lg font-bold text-[#002148]">
+                  <h3 className="mt-6 text-lg font-bold text-[#04331D]">
                     {t(`items.${key}.title`)}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-neutral-500">
@@ -180,8 +193,9 @@ function Features() {
 function Cta() {
   const t = useTranslations("Showcase.cta");
   const tHeader = useTranslations("Header");
+  const demo = useDemoModal();
   return (
-    <section className="relative isolate overflow-hidden bg-[#020b24] py-28 text-white lg:py-40">
+    <section className="relative isolate overflow-hidden bg-[#02150c] py-28 text-white lg:py-40">
       <motion.div
         className="absolute -left-32 top-0 -z-10 size-[32rem] rounded-full bg-brand/50 blur-[120px]"
         animate={{ x: [0, 120, -40, 0], y: [0, 60, -40, 0] }}
@@ -200,7 +214,7 @@ function Cta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.8, ease }}
-          className="mx-auto max-w-3xl bg-linear-to-r from-white via-[#b9d0ff] to-white bg-clip-text font-play text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-6xl"
+          className="mx-auto max-w-3xl bg-linear-to-r from-white via-[#b5ecce] to-white bg-clip-text font-play text-4xl font-bold leading-tight text-transparent sm:text-5xl lg:text-6xl"
         >
           {t("title")}
         </motion.h2>
@@ -220,22 +234,21 @@ function Cta() {
           transition={{ delay: 0.3, duration: 0.6, ease }}
           className="mt-10"
         >
-          <Link
-            href="/#contacts"
-            onClick={(e) => {
-              if (scrollToSection("contacts")) e.preventDefault();
-            }}
+          <button
+            type="button"
+            onClick={demo.open}
             className="inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-base font-bold text-brand shadow-[0_0_60px_-10px] shadow-brand transition-transform hover:scale-105"
           >
             {tHeader("getDemo")}
-          </Link>
+          </button>
         </motion.div>
       </div>
     </section>
   );
 }
 
-export default function Showcase() {
+/** The landing page; `children` are the classic sections placed before the final CTA. */
+export default function Showcase({ children }: { children?: ReactNode }) {
   // reducedMotion="user": transform animations are skipped for people who
   // asked their OS for less motion; the 3D scenes check the same setting.
   return (
@@ -246,6 +259,7 @@ export default function Showcase() {
         <Telematics />
         <Features />
         <IndustriesScroll />
+        {children}
         <Cta />
       </main>
     </MotionConfig>

@@ -7,7 +7,6 @@
       "partners": "Partners",
       "contacts": "Contacts"
     },
-    "showcase": "Showcase",
     "getDemo": "Get Demo",
     "brand": "HEBENT FLEET",
     "openMenu": "Open menu",
@@ -17,53 +16,15 @@
       "en": "EN",
       "ru": "RU",
       "tk": "TK"
-    }
-  },
-  "Main": {
-    "title": "Full control of your Fleet in real time",
-    "description": "Monitor vehicles, optimize routes and reduce costs with our comprehensive GPS fleet management platform. Get complete visibility into your fleet operations.",
-    "watchVideo": "Watch Video",
-    "getDemo": "Get Demo",
-    "bullets": {
-      "support": "Technical support in Ashgabat",
-      "brands": "40+ equipment brands",
-      "api": "Ready Enterprise API"
-    }
-  },
-  "Advantages": {
-    "title": "We solve each of these problems",
-    "subtitle": "Every issue is covered by a specific tool",
-    "painColumn": "Client pain",
-    "solutionColumn": "Our solution",
-    "rows": {
-      "fuel": {
-        "painTitle": "Fuel",
-        "painDescription": "Costs keep rising — nobody controls consumption and routes",
-        "solutionTitle": "Consumption control",
-        "solutionDescription": "Online consumption monitoring, spotting unnecessary trips, route optimisation"
-      },
-      "transport": {
-        "painTitle": "Fleet",
-        "painDescription": "Unclear where vehicles are, whether routes are followed, or if there are deviations",
-        "solutionTitle": "GPS and map",
-        "solutionDescription": "All vehicles on the map in real time, route control and notifications"
-      },
-      "drivers": {
-        "painTitle": "Drivers",
-        "painDescription": "No visibility into work: speed, discipline, violations — everything is blind",
-        "solutionTitle": "Driver log",
-        "solutionDescription": "Full action history, speed control, improved discipline"
-      },
-      "analytics": {
-        "painTitle": "Analytics",
-        "painDescription": "Manual reports, stale data — decisions are made without real data",
-        "solutionTitle": "Auto-reports",
-        "solutionDescription": "Automatic reports, mileage and efficiency analytics for every vehicle"
-      }
-    }
+    },
+    "langFull": {
+      "en": "English",
+      "ru": "Русский",
+      "tk": "Türkmençe"
+    },
+    "status": "Fleet monitoring 24/7"
   },
   "Industry": {
-    "title": "Suitable for any industry",
     "cards": {
       "transport": "Transport and logistics",
       "construction": "Construction",
@@ -192,17 +153,31 @@
     "privacyDescription": "How Hebent Tech collects, uses and protects the personal information you provide."
   },
   "Showcase": {
-    "meta": {
-      "title": "Showcase",
-      "description": "An interactive 3D tour of the Hebent Fleet GPS monitoring platform."
-    },
     "hero": {
       "eyebrow": "Hebent Fleet · live",
       "title": "Your whole fleet on one living map",
       "subtitle": "Every vehicle, route and stop — tracked in real time and brought to life in 3D.",
       "ctaSecondary": "Take the tour",
       "hint": "Drag the globe to rotate it",
-      "globeLabel": "3D globe with live delivery routes from Ashgabat"
+      "globeLabel": "3D globe with live delivery routes from Ashgabat",
+      "legend": {
+        "vehicle": "Vehicle en route",
+        "destination": "Destination",
+        "hub": "Hub — Ashgabat"
+      },
+      "cities": {
+        "ashgabat": "Ashgabat",
+        "istanbul": "Istanbul",
+        "moscow": "Moscow",
+        "dubai": "Dubai",
+        "almaty": "Almaty",
+        "tehran": "Tehran",
+        "baku": "Baku",
+        "tashkent": "Tashkent",
+        "beijing": "Beijing",
+        "berlin": "Berlin",
+        "delhi": "Delhi"
+      }
     },
     "stats": {
       "brands": "equipment brands",
@@ -254,5 +229,37 @@
       "title": "Ready to see your fleet like this?",
       "text": "Leave a request and we will show the platform on your own vehicles."
     }
+  },
+  "DemoForm": {
+    "title": "Request a demo",
+    "subtitle": "Leave your details and we'll show Hebent Fleet on your own vehicles.",
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "phone": "Phone",
+      "email": "Email",
+      "position": "Job title",
+      "company": "Company"
+    },
+    "placeholders": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "phone": "+993 6X XXXXXX",
+      "email": "name@company.com",
+      "position": "Fleet manager",
+      "company": "Company name"
+    },
+    "errors": {
+      "required": "Please fill in this field",
+      "invalid": "Please check the format",
+      "tooLong": "Too long"
+    },
+    "submit": "Send request",
+    "sending": "Sending…",
+    "successTitle": "Request sent!",
+    "successText": "Thank you! Our manager will contact you shortly.",
+    "sendError": "We couldn't send your request. Please try again or write to us at",
+    "close": "Close",
+    "consent": "By sending the form you agree to the <link>privacy policy</link>."
   }
 }

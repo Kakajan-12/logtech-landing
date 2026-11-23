@@ -24,7 +24,7 @@ export default function BePartner() {
   return (
     <section
       id="partners"
-      className="bg-light-blue py-15 lg:py-28 scroll-mt-32 md:scroll-mt-36"
+      className="bg-light-green py-15 lg:py-28 scroll-mt-16"
       aria-labelledby="be-partner-heading"
     >
       <div className="container mx-auto px-5 lg:px-10">
@@ -61,7 +61,7 @@ export default function BePartner() {
               initial="hidden"
               whileInView="visible"
               viewport={viewport}
-              className="hidden lg:block font-play text-4xl font-bold tracking-tight text-[#002148]"
+              className="hidden lg:block font-play text-4xl font-bold tracking-tight text-[#04331D]"
             >
               {t("title")}
             </motion.h3>

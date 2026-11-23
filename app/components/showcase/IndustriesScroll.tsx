@@ -18,7 +18,9 @@ export default function IndustriesScroll() {
     const el = track.current;
     if (!el) return;
     const measure = () =>
-      setDistance(Math.max(0, el.scrollWidth - document.documentElement.clientWidth));
+      setDistance(
+        Math.max(0, el.scrollWidth - document.documentElement.clientWidth),
+      );
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     window.addEventListener("resize", measure);
@@ -37,7 +39,8 @@ export default function IndustriesScroll() {
   return (
     <section
       ref={section}
-      className="relative bg-white"
+      id="industry"
+      className="relative scroll-mt-16 bg-white"
       style={{ height: `calc(100vh + ${distance}px)` }}
     >
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-28 pb-10">
@@ -45,7 +48,7 @@ export default function IndustriesScroll() {
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand">
             {t("eyebrow")}
           </p>
-          <h2 className="mt-3 max-w-2xl font-play text-3xl font-bold leading-tight text-[#002148] sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 max-w-2xl font-play text-3xl font-bold leading-tight text-[#04331D] sm:text-4xl lg:text-5xl">
             {t("title")}
           </h2>
         </div>
@@ -68,7 +71,7 @@ export default function IndustriesScroll() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
               <div
-                className="absolute inset-0 bg-linear-to-t from-[#020b24]/85 via-[#020b24]/10 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-[#02150c]/85 via-[#02150c]/10 to-transparent"
                 aria-hidden
               />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">

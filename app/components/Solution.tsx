@@ -23,7 +23,7 @@ export default function Solution() {
   return (
     <section
       id="solutions"
-      className="scroll-mt-32 bg-white py-15 lg:py-28 md:scroll-mt-36"
+      className="scroll-mt-16 bg-white py-15 lg:py-28"
       // aria-labelledby="solution-heading"
     >
       <div className="container mx-auto px-5 lg:px-10">
@@ -33,7 +33,7 @@ export default function Solution() {
           whileInView="visible"
           viewport={viewport}
           id="solution-heading"
-          className="text-center font-play text-2xl font-bold tracking-tight text-[#002148] sm:text-3xl lg:text-4xl"
+          className="text-center font-play text-2xl font-bold tracking-tight text-[#04331D] sm:text-3xl lg:text-4xl"
         >
           {t("title")}
         </motion.h2>
@@ -50,11 +50,11 @@ export default function Solution() {
 
         <div className="relative mx-auto mt-14 max-w-5xl sm:mt-16 lg:mt-20">
           <div
-            className="pointer-events-none absolute top-12.5 right-[12%] left-[12%] z-0 hidden h-0 border-t-2 border-dashed border-[#B8CEFF] md:block"
+            className="pointer-events-none absolute top-12.5 right-[12%] left-[12%] z-0 hidden h-0 border-t-2 border-dashed border-[#A9DDC0] md:block"
             aria-hidden
           />
           <div
-            className="absolute top-0 left-1/2 z-0 h-full w-0 -translate-x-1/2 border-l-2 border-dashed border-[#B8CEFF] md:hidden"
+            className="absolute top-0 left-1/2 z-0 h-full w-0 -translate-x-1/2 border-l-2 border-dashed border-[#A9DDC0] md:hidden"
             aria-hidden
           />
           <ol className="relative z-10 grid gap-32.5 md:grid-cols-3 md:gap-8 lg:gap-10">
@@ -70,7 +70,7 @@ export default function Solution() {
                   viewport={viewport}
                   className="flex flex-col items-center text-center z-10 relative bg-white md:bg-transparent"
                 >
-                  <div className="relative flex size-25 shrink-0 items-center justify-center rounded-md bg-light-blue z-10">
+                  <div className="relative flex size-25 shrink-0 items-center justify-center rounded-md bg-light-green z-10">
                     <span className="absolute -right-1.5 -top-1.5 flex size-8.5 items-center justify-center rounded-full bg-brand text-base font-semibold leading-none text-white shadow-sm">
                       {n}
                     </span>

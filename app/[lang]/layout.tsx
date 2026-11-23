@@ -12,6 +12,7 @@ import {
 import { NextIntlClientProvider } from "next-intl";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
+import { DemoModalProvider } from "../components/demo/DemoModal";
 import favicon from "@/app/favicon.ico";
 
 const jost = Jost({
@@ -71,9 +72,11 @@ export default async function RootLayout({
     <html lang={lang} className={`${jost.variable} ${play.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider locale={lang} messages={messages}>
-          <Header />
-          {children}
-          <Footer />
+          <DemoModalProvider>
+            <Header />
+            {children}
+            <Footer />
+          </DemoModalProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -7,7 +7,6 @@
       "partners": "Hyzmatdaşlar",
       "contacts": "Kontaktlar"
     },
-    "showcase": "Görkeziş",
     "getDemo": "Demo",
     "brand": "HEBENT FLEET",
     "openMenu": "Menýüni aç",
@@ -17,53 +16,15 @@
       "en": "EN",
       "ru": "RU",
       "tk": "TK"
-    }
-  },
-  "Main": {
-    "title": "Awtoulagyňyz üstünde doly gözegçilik — hakyky wagtda",
-    "description": "Ulag serişdelerini gözegçilik ediň, ugurlary optimizasiýa ediň we GPS platformamyz bilen çykdajylary azaldyň. Awtoulag işlerine doly görüş.",
-    "watchVideo": "Wideony gör",
-    "getDemo": "Demo",
-    "bullets": {
-      "support": "Aşgabatda tehniki goldaw",
-      "brands": "40+ enjam markasy",
-      "api": "Enterprise API taýýar"
-    }
-  },
-  "Advantages": {
-    "title": "Biz bu meseleleriň ählisini çözýäris",
-    "subtitle": "Her mesele — anyk gural bilen ýapylyar",
-    "painColumn": "Müşderiniň agyrysy",
-    "solutionColumn": "Bizim çözgüdümiz",
-    "rows": {
-      "fuel": {
-        "painTitle": "Ýangyjy",
-        "painDescription": "Çykdajylar yzygider artýar — hiç kim sarpawy we ugurlary dolandyrmaýar",
-        "solutionTitle": "Sarpawa gözegçilik",
-        "solutionDescription": "Onlaýn sarpaw gözegçiligi, artan syýahatlary anyklamak, ugurlary optimizasiýa etmek"
-      },
-      "transport": {
-        "painTitle": "Ulag",
-        "painDescription": "Awtoulaglaryň nirede, ugura laýyklygy we çykylanlygy düşnükli däl",
-        "solutionTitle": "GPS we karta",
-        "solutionDescription": "Ähli awtoulaglar kartada wagtlaýyn, ugura gözegçilik we habarnamalar"
-      },
-      "drivers": {
-        "painTitle": "Sürüjiler",
-        "painDescription": "Işe çydamlylyk ýok: tizlik, tertip, bozulmalar — ählisi göz öňünde däl",
-        "solutionTitle": "Sürüji güýjügi",
-        "solutionDescription": "Hereketleriň doly taryhy, tizlige gözegçilik, tertibi güýçlendirmek"
-      },
-      "analytics": {
-        "painTitle": "Analitika",
-        "painDescription": "Elde hasabatlar, maglumatlar könelýär — kararlar maglumat ýokda kabul edilýär",
-        "solutionTitle": "Awtomatiki hasabatlar",
-        "solutionDescription": "Awtomatiki hasabatlar, her ulag üçin ýol we netijelilik analitikasy"
-      }
-    }
+    },
+    "langFull": {
+      "en": "English",
+      "ru": "Русский",
+      "tk": "Türkmençe"
+    },
+    "status": "Awtoparkyň gözegçiligi 24/7"
   },
   "Industry": {
-    "title": "Islendik pudaga laýyk",
     "cards": {
       "transport": "Ulag we logistika",
       "construction": "Gurluşyk",
@@ -192,17 +153,31 @@
     "privacyDescription": "Hebent Tech siziň beren şahsy maglumatlaryňyzy nähili ýygnaýar, ulanýar we goraýar."
   },
   "Showcase": {
-    "meta": {
-      "title": "Görkeziş",
-      "description": "Hebent Fleet GPS gözegçilik platformasy boýunça interaktiw 3D syýahat."
-    },
     "hero": {
       "eyebrow": "Hebent Fleet · hakyky wagtda",
       "title": "Ähli awtoparkyňyz bir janly kartada",
       "subtitle": "Her bir ulag, ugur we duralga — hakyky wagtda we 3D görnüşinde.",
       "ctaSecondary": "Dowamyny görmek",
       "hint": "Aýlamak üçin globusy süýşüriň",
-      "globeLabel": "Aşgabatdan eltip bermek ugurlary görkezilen 3D globus"
+      "globeLabel": "Aşgabatdan eltip bermek ugurlary görkezilen 3D globus",
+      "legend": {
+        "vehicle": "Ýoldaky ulag",
+        "destination": "Barmaly ýeri",
+        "hub": "Merkez — Aşgabat"
+      },
+      "cities": {
+        "ashgabat": "Aşgabat",
+        "istanbul": "Stambul",
+        "moscow": "Moskwa",
+        "dubai": "Dubaý",
+        "almaty": "Almaty",
+        "tehran": "Tähran",
+        "baku": "Baku",
+        "tashkent": "Daşkent",
+        "beijing": "Pekin",
+        "berlin": "Berlin",
+        "delhi": "Deli"
+      }
     },
     "stats": {
       "brands": "enjam brendi",
@@ -254,5 +229,37 @@
       "title": "Awtoparkyňyzy şeýle görmek isleýärsiňizmi?",
       "text": "Haýyş galdyryň — platformany öz ulaglaryňyzda görkezeris."
     }
+  },
+  "DemoForm": {
+    "title": "Demo soramak",
+    "subtitle": "Maglumatlaryňyzy galdyryň, Hebent Fleet-i öz ulaglaryňyzda görkezeris.",
+    "fields": {
+      "firstName": "Ady",
+      "lastName": "Familiýasy",
+      "phone": "Telefon",
+      "email": "E-poçta",
+      "position": "Wezipesi",
+      "company": "Kompaniýa"
+    },
+    "placeholders": {
+      "firstName": "Aman",
+      "lastName": "Amanow",
+      "phone": "+993 6X XXXXXX",
+      "email": "name@company.com",
+      "position": "Awtopark ýolbaşçysy",
+      "company": "Kompaniýanyň ady"
+    },
+    "errors": {
+      "required": "Bu meýdançany dolduryň",
+      "invalid": "Formaty barlaň",
+      "tooLong": "Örän uzyn"
+    },
+    "submit": "Arza ibermek",
+    "sending": "Iberilýär…",
+    "successTitle": "Arza iberildi!",
+    "successText": "Sag boluň! Menejerimiz ýakyn wagtda siziň bilen habarlaşar.",
+    "sendError": "Arzany iberip bolmady. Gaýtadan synanyşyň ýa-da bize ýazyň:",
+    "close": "Ýapmak",
+    "consent": "Formany ibermek bilen, siz <link>gizlinlik syýasatyna</link> razylyk berýärsiňiz."
   }
 }
