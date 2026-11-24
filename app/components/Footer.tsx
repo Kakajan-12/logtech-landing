@@ -1,179 +1,192 @@
-import type { CSSProperties } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
-import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
+import { useMessages, useTranslations } from "next-intl";
+import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 import { FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { IoLogoWechat } from "react-icons/io5";
+import { Link } from "@/app/i18n/navigation";
 import footerBg from "../../public/bg-footer1.svg";
-import { FiMapPin } from "react-icons/fi";
-import Link from "next/link";
+import { BackToTop, FooterCta } from "./FooterActions";
 
 const year = new Date().getFullYear();
+const PHONE = "+993 71 397739";
+const EMAIL = "info@hebent.tech";
+
+const social = [
+  { name: "WeChat", href: "wechat://davud3108", Icon: IoLogoWechat },
+  { name: "Telegram", href: "https://t.me/davud3108", Icon: FaTelegramPlane },
+  { name: "WhatsApp", href: "https://wa.me/99365634115", Icon: FaWhatsapp },
+] as const;
+
+const ICON_BOX =
+  "inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-white/5 text-[#6fdca0] ring-1 ring-white/10 transition-colors";
+
+function ColumnTitle({ children }: { children: ReactNode }) {
+  return (
+    <h3 className="text-xs font-semibold tracking-[0.2em] text-[#6fdca0] uppercase">
+      {children}
+    </h3>
+  );
+}
 
 export default function Footer() {
   const t = useTranslations("Footer");
   const tHeader = useTranslations("Header");
-  const lang = useLocale();
-  const social = [
-    {
-      name: "Wechat",
-      href: "wechat://davud3108",
-      Icon: IoLogoWechat,
-    },
-    { name: "Telegram", href: "https://t.me/davud3108", Icon: FaTelegramPlane },
-    { name: "WhatsApp", href: "https://wa.me/99365634115", Icon: FaWhatsapp },
-  ] as const;
+  const tPartner = useTranslations("BePartner");
+  const messages = useMessages() as {
+    Header?: { nav?: Record<string, string> };
+  };
+  const navKeys = Object.keys(messages.Header?.nav ?? {});
+  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    t("address"),
+  )}`;
+
   return (
     <footer
       id="contacts"
-      className="relative isolate mt-auto overflow-hidden text-white scroll-mt-16"
+      className="relative isolate mt-auto scroll-mt-16 overflow-hidden bg-[#02150c] text-white"
     >
-      <div
-        className="absolute inset-0 bg-[linear-gradient(177deg,#0F833F_0.23%,#08945A_96.91%)]"
-        aria-hidden
-      />
+      {/* texture + soft brand glow + a thin light line on top */}
       <div
         className="footer-bg-pattern"
-        style={
-          {
-            "--footer-bg-url": `url(${footerBg.src})`,
-          } as CSSProperties
-        }
+        style={{ "--footer-bg-url": `url(${footerBg.src})` } as CSSProperties}
         aria-hidden
       />
-      <div className="relative z-10 container mx-auto px-5 lg:px-10 pt-6 md:pt-10 lg:pt-16 pb-6 lg:pb-5">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          <div className="logo flex flex-col gap-3">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/logo.svg"
-                alt={tHeader("brand")}
-                width={155}
-                height={50}
-                className="h-10 lg:h-18 w-auto filter-[brightness(0)_invert(1)]"
-                style={{ width: "auto" }}
-              />
-            </div>
-            <p className="max-w-2xs text-xs leading-relaxed text-white sm:text-sm">
-              {t("tagline")}
-            </p>
+      <div
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] max-w-full -translate-x-1/2 rounded-full bg-brand/30 blur-[120px]"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#38e0a0]/50 to-transparent"
+        aria-hidden
+      />
 
-            <ul
-              className="hidden sm:flex flex-wrap gap-3"
-              aria-label={t("socialLabel")}
-            >
-              {social.map(({ name, href, Icon }) => (
-                <li key={name}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex size-6 md:size-10 items-center justify-center rounded-full bg-white text-brand transition-transform hover:scale-105 hover:bg-white/95"
-                    aria-label={name}
-                  >
-                    <Icon className="size-4 md:size-7" aria-hidden />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="contacts mr-8 font-bold flex flex-col gap-3">
-            <h3 className="text-sm md:text-base tracking-wide ">
-              {t("contactsTitle")}
-            </h3>
-            <ul className="flex flex-col gap-3 text-sm md:text-base font-medium">
-              <li>
-                <a
-                  href="tel:+99371397739"
-                  className="inline-flex items-start gap-3 text-white/95 transition-opacity hover:opacity-90"
-                >
-                  <HiOutlinePhone className="size-4 shrink-0" aria-hidden />
-                  <span className="tabular-nums leading-none mt-1">
-                    +993 71 397739
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:info@hebent.tech`}
-                  className="inline-flex items-start gap-3 leading-none text-white transition-opacity hover:opacity-90"
-                >
-                  <HiOutlineMail className="size-4 shrink-0" aria-hidden />
-                  <span className="leading-none mt-1">info@hebent.tech</span>
-                </a>
-              </li>
-              <li className="inline-flex items-start gap-3 text-white/95">
-                <FiMapPin className="size-4 shrink-0" aria-hidden />
-                <span className="leading-5">{t("address")}</span>
-              </li>
-            </ul>
-            <ul
-              className="flex sm:hidden flex-wrap gap-3 items-center"
-              aria-label={t("socialLabel")}
-            >
-              {social.map(({ name, href, Icon }) => (
-                <li key={name}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex size-6 md:size-12 items-center justify-center rounded-full bg-white text-brand transition-transform hover:scale-105 hover:bg-white/95"
-                    aria-label={name}
-                  >
-                    <Icon className="size-4 md:size-12" aria-hidden />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-4 lg:mt-16 border-t border-white/30 pt-4 flex flex-col gap-2 lg:gap-4 md:flex-row md:items-center md:justify-between text-base lg:text-sm text-white">
-          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 lg:gap-x-4">
-            <Link
-              href={`/${lang}/privacy-policy`}
-              className="whitespace-nowrap underline-offset-2 text-xs md:text-sm hover:underline"
-            >
-              {t("privacy")}
-            </Link>
-            <Link
-              href={`/${lang}/cookies`}
-              className="whitespace-nowrap underline-offset-2 text-xs md:text-sm hover:underline"
-            >
-              {t("cookies")}
-            </Link>
-          </nav>
-          <div className="flex flex-col md:flex-row items-start gap-2 md:items-center lg:gap-5">
-            <span className="whitespace-nowrap text-sm">
-              © {year}, {t("rights")}
-            </span>
+      <div className="relative container mx-auto px-5 pt-16 pb-8 lg:px-10 lg:pt-20">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1.2fr_1.3fr] lg:gap-10">
+          {/* brand */}
+          <div>
             <Image
               src="/logo.svg"
               alt={tHeader("brand")}
               width={155}
               height={50}
-              className="h-8 w-auto filter-[brightness(0)_invert(1)]"
+              className="h-12 w-auto brightness-0 invert"
               style={{ width: "auto" }}
+            />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
+              {t("tagline")}
+            </p>
+            <ul className="mt-6 flex gap-3" aria-label={t("socialLabel")}>
+              {social.map(({ name, href, Icon }) => (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    className="inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-[transform,background-color,color,border-color] hover:-translate-y-0.5 hover:border-transparent hover:bg-[#38e0a0] hover:text-[#02150c]"
+                  >
+                    <Icon className="size-[18px]" aria-hidden />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* sections */}
+          <nav aria-label={t("navTitle")}>
+            <ColumnTitle>{t("navTitle")}</ColumnTitle>
+            <ul className="mt-5 flex flex-col gap-3 text-sm">
+              {navKeys.map((key) => (
+                <li key={key}>
+                  <Link
+                    href={`/#${key}`}
+                    className="text-white/70 transition-colors hover:text-white"
+                  >
+                    {tHeader(`nav.${key}`)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* contacts */}
+          <div>
+            <ColumnTitle>{t("contactsTitle")}</ColumnTitle>
+            <ul className="mt-5 flex flex-col gap-4 text-sm">
+              <li>
+                <a
+                  href="tel:+99371397739"
+                  className="group inline-flex items-center gap-3 text-white/85 transition-colors hover:text-white"
+                >
+                  <span className={`${ICON_BOX} group-hover:bg-brand/40`}>
+                    <Phone className="size-4" aria-hidden />
+                  </span>
+                  <span className="tabular-nums">{PHONE}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="group inline-flex items-center gap-3 text-white/85 transition-colors hover:text-white"
+                >
+                  <span className={`${ICON_BOX} group-hover:bg-brand/40`}>
+                    <Mail className="size-4" aria-hidden />
+                  </span>
+                  {EMAIL}
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-white/85">
+                <span className={ICON_BOX}>
+                  <MapPin className="size-4" aria-hidden />
+                </span>
+                <span className="leading-relaxed">
+                  {t("address")}
+                  <a
+                    href={mapHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 flex w-fit items-center gap-1 text-xs font-semibold text-[#6fdca0] hover:underline"
+                  >
+                    {t("mapLink")}
+                    <ExternalLink className="size-3" aria-hidden />
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* call to action */}
+          <div className="rounded-3xl border border-white/10 bg-[linear-gradient(160deg,rgba(15,131,63,0.35),rgba(4,51,29,0.2))] p-6 sm:col-span-2 lg:col-span-1">
+            <p className="font-play text-2xl font-bold">{t("ctaTitle")}</p>
+            <p className="mt-2 text-sm leading-relaxed text-white/65">
+              {t("ctaText")}
+            </p>
+            <FooterCta
+              demoLabel={tHeader("getDemo")}
+              partnerLabel={tPartner("cta")}
             />
           </div>
         </div>
-      </div>
-      {/* <div className="absolute bottom-0 left-0 right-0 border-t border-[#3FB37A] font-jost font-bold text-xs lg:text-base text-[#ACABAB] bg-[linear-gradient(177deg,#0F833F_0.23%,#08945A_96.91%)]">
-        <div className="container mx-auto py-3 px-5 lg:px-10 flex items-center gap-2">
-          <span className="leading-none pt-1">{year}</span>
-          <p className="flex items-center gap-1">
-            <Image
-              src="/logoIcon.svg"
-              alt="logo"
-              width={25}
-              height={25}
-              className="w-6 h-6 brightness-0 invert"
-            />
-            <span className="pt-1">Hebent Technology</span>
+
+        <div className="mt-14 flex flex-col gap-5 border-t border-white/10 pt-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
+          <p>
+            © {year} Hebent Fleet. {t("rights")}
           </p>
-          <span className="leading-none pt-1">{t("copyright")}</span>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2" aria-label={t("legal")}>
+            <Link
+              href="/privacy-policy"
+              className="transition-colors hover:text-white"
+            >
+              {t("privacy")}
+            </Link>
+            <Link href="/cookies" className="transition-colors hover:text-white">
+              {t("cookies")}
+            </Link>
+          </nav>
+          <BackToTop label={t("backToTop")} />
         </div>
-      </div> */}
+      </div>
     </footer>
   );
 }

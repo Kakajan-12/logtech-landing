@@ -81,7 +81,13 @@
     "socialLabel": "Sosial ulgamlar",
     "rights": "Ähli hukuklar goragly",
     "privacy": "Gizlinlik syýasaty",
-    "cookies": "Cookie"
+    "cookies": "Cookie",
+    "navTitle": "Bölümler",
+    "ctaTitle": "Başlamaga taýynmy?",
+    "ctaText": "Platformanyň siziň ulaglaryňyzda nähili işleýändigini görkezeris.",
+    "mapLink": "Kartada açmak",
+    "backToTop": "Ýokaryk",
+    "legal": "Hukuk maglumatlary"
   },
   "CookiesPolicy": {
     "title1": "Cookie syýasaty",

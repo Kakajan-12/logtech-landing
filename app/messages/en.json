@@ -81,7 +81,13 @@
     "socialLabel": "Social networks",
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
-    "cookies": "Cookies Policy"
+    "cookies": "Cookies Policy",
+    "navTitle": "Sections",
+    "ctaTitle": "Ready to start?",
+    "ctaText": "We'll show how the platform works on your own vehicles.",
+    "mapLink": "Open in maps",
+    "backToTop": "Back to top",
+    "legal": "Legal"
   },
   "CookiesPolicy": {
     "title1": "Cookies Policy",
