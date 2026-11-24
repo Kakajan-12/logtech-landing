@@ -1,5 +1,5 @@
 // Server-side only: imported from the requestDemo server action.
-import type { DemoField, DemoRequest } from "./demoRequest";
+import type { DemoField, DemoRequest, RequestKind } from "./demoRequest";
 
 export const DEMO_INBOX = "info@hebent.tech";
 
@@ -21,7 +21,11 @@ const escapeHtml = (s: string) =>
  * Sends a demo request to DEMO_INBOX via Resend (Vercel Marketplace),
  * using its REST API directly: https://resend.com/docs/api-reference/emails/send-email
  */
-export async function sendDemoRequest(request: DemoRequest): Promise<void> {
+export async function sendDemoRequest(
+  request: DemoRequest,
+  kind: RequestKind = "demo",
+): Promise<void> {
+  const what = kind === "partner" ? "партнёрство" : "демо";
   const apiKey = process.env.RESEND_API_KEY;
   const domain = process.env.RESEND_EMAIL_DOMAIN;
   if (!apiKey || !domain) throw new Error("RESEND_API_KEY / RESEND_EMAIL_DOMAIN not set");
@@ -50,11 +54,11 @@ export async function sendDemoRequest(request: DemoRequest): Promise<void> {
       to: [DEMO_INBOX],
       // "Reply" in the inbox goes straight to the visitor
       reply_to: request.email,
-      subject: `Заявка на демо: ${name}, ${request.company}`.replace(/\s+/g, " "),
-      text: `Новая заявка на демо с сайта\n\n${text}`,
+      subject: `Заявка на ${what}: ${name}, ${request.company}`.replace(/\s+/g, " "),
+      text: `Новая заявка на ${what} с сайта\n\n${text}`,
       html:
         `<div style="font-family:Arial,sans-serif;font-size:15px">` +
-        `<h2 style="color:#0f833f;margin:0 0 16px">Новая заявка на демо</h2>` +
+        `<h2 style="color:#0f833f;margin:0 0 16px">Новая заявка на ${what}</h2>` +
         `<table style="border-collapse:collapse">${rows}</table></div>`,
     }),
   });

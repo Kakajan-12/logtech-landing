@@ -8,6 +8,10 @@ export const DEMO_FIELDS = [
 ] as const;
 export type DemoField = (typeof DEMO_FIELDS)[number];
 export type DemoRequest = Record<DemoField, string>;
+/** what the visitor asks for: a product demo or a partnership */
+export type RequestKind = "demo" | "partner";
+export const REQUEST_KINDS: readonly RequestKind[] = ["demo", "partner"];
+
 export type DemoFieldError = "required" | "invalid" | "tooLong";
 
 export type DemoState =

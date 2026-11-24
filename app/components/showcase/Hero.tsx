@@ -110,7 +110,7 @@ export default function Hero() {
           >
             <button
               type="button"
-              onClick={demo.open}
+              onClick={() => demo.open()}
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-[0_0_40px_-8px] shadow-brand transition-transform hover:scale-[1.03]"
             >
               <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />

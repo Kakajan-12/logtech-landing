@@ -14,9 +14,17 @@ import { useTranslations } from "next-intl";
 import { CheckCircle2, Loader2, X } from "lucide-react";
 import { Link } from "@/app/i18n/navigation";
 import { requestDemo } from "@/app/actions/requestDemo";
-import { DEMO_FIELDS, type DemoField, type DemoState } from "@/lib/demoRequest";
+import {
+  DEMO_FIELDS,
+  type DemoField,
+  type DemoState,
+  type RequestKind,
+} from "@/lib/demoRequest";
 
-const DemoModalContext = createContext<{ open: () => void } | null>(null);
+const DemoModalContext = createContext<{
+  /** opens the request dialog; "partner" switches its wording and email subject */
+  open: (kind?: RequestKind) => void;
+} | null>(null);
 
 /** Opens the "request a demo" dialog from any button on the site. */
 export function useDemoModal() {
@@ -42,8 +50,10 @@ export function DemoModalProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   // remount the form on every opening so a sent form starts fresh next time
   const [session, setSession] = useState(0);
+  const [kind, setKind] = useState<RequestKind>("demo");
 
-  const open = useCallback(() => {
+  const open = useCallback((k: RequestKind = "demo") => {
+    setKind(k === "partner" ? "partner" : "demo");
     setSession((s) => s + 1);
     dialog.current?.showModal();
   }, []);
@@ -62,13 +72,20 @@ export function DemoModalProvider({ children }: { children: ReactNode }) {
           if (e.target === e.currentTarget) close();
         }}
       >
-        {session > 0 && <DemoForm key={session} onClose={close} />}
+        {session > 0 && <DemoForm key={session} kind={kind} onClose={close} />}
       </dialog>
     </DemoModalContext.Provider>
   );
 }
 
-function DemoForm({ onClose }: { onClose: () => void }) {
+function DemoForm({
+  kind,
+  onClose,
+}: {
+  kind: RequestKind;
+  onClose: () => void;
+}) {
+  const prefix = kind === "partner" ? "partner." : "";
   const t = useTranslations("DemoForm");
   const [state, action, pending] = useActionState<DemoState, FormData>(
     requestDemo,
@@ -92,9 +109,9 @@ function DemoForm({ onClose }: { onClose: () => void }) {
           id="demo-title"
           className="font-play text-2xl font-bold sm:text-3xl"
         >
-          {t("title")}
+          {t(`${prefix}title`)}
         </h2>
-        <p className="mt-2 max-w-md text-sm text-white/80">{t("subtitle")}</p>
+        <p className="mt-2 max-w-md text-sm text-white/80">{t(`${prefix}subtitle`)}</p>
         <button
           type="button"
           onClick={onClose}
@@ -165,6 +182,8 @@ function DemoForm({ onClose }: { onClose: () => void }) {
               );
             })}
           </div>
+
+          <input type="hidden" name="kind" value={kind} />
 
           {/* honeypot for bots: hidden from people and screen readers */}
           <input

@@ -53,7 +53,9 @@
         "title": "Monitor and mobile",
         "description": "Track, analyze, and optimize your entire fleet from one powerful online platform."
       }
-    }
+    },
+    "connected": "Connected",
+    "cta": "Start with a demo"
   },
   "BePartner": {
     "title": "Become a partner",
@@ -64,10 +66,13 @@
       "costs": "Cut unexpected costs and downtime"
     },
     "outro": "Join us — together we will make transport cheaper and more transparent for business.",
-    "imageAlt": "Logistics, GPS monitoring, and partnership"
+    "imageAlt": "Logistics, GPS monitoring, and partnership",
+    "eyebrow": "Partnership",
+    "cta": "Become a partner"
   },
   "Partners": {
-    "title": "Our partners"
+    "title": "Our partners",
+    "eyebrow": "Trusted by"
   },
   "Footer": {
     "tagline": "Complete GPS fleet management solution for modern businesses",
@@ -198,7 +203,11 @@
       "engine": "Engine",
       "engineValue": "Running",
       "hint": "Scroll to turn the truck",
-      "truckLabel": "3D model of a truck with a GPS tracker"
+      "truckLabel": "3D model of a truck with a GPS tracker",
+      "temp": "Trailer temperature",
+      "tempValue": "−18 °C",
+      "doors": "Trailer doors",
+      "doorsValue": "Closed"
     },
     "features": {
       "title": "Built for full control",
@@ -223,7 +232,85 @@
     },
     "industries": {
       "eyebrow": "Industries",
-      "title": "One platform for every kind of fleet"
+      "title": "One platform for every kind of fleet",
+      "counter": "of",
+      "moreTitle": "Don't see your industry?",
+      "moreText": "Tell us about your fleet and we'll match the hardware and reports to your needs.",
+      "moreCta": "Discuss your project",
+      "items": {
+        "transport": {
+          "text": "Routes, trips and idle time of the whole fleet in one view.",
+          "tags": [
+            "Routes",
+            "Fuel",
+            "Idle time"
+          ]
+        },
+        "construction": {
+          "text": "Engine hours, work and downtime of machinery on site.",
+          "tags": [
+            "Engine hours",
+            "Geofences",
+            "Downtime"
+          ]
+        },
+        "agriculture": {
+          "text": "Field work, covered area and fuel consumption.",
+          "tags": [
+            "Area",
+            "Field tracks",
+            "Fuel"
+          ]
+        },
+        "courier": {
+          "text": "Every delivery on time: route, stops and travel time.",
+          "tags": [
+            "Stops",
+            "ETA",
+            "Route"
+          ]
+        },
+        "leasing": {
+          "text": "Where the vehicles are, how they're used and how far they've gone.",
+          "tags": [
+            "Location",
+            "Mileage",
+            "Driving style"
+          ]
+        },
+        "trailers": {
+          "text": "Trailer location, cargo temperature and door openings.",
+          "tags": [
+            "Temperature",
+            "Doors",
+            "Uncoupling"
+          ]
+        },
+        "taxi": {
+          "text": "Vehicle utilisation, mileage and every driver's driving style.",
+          "tags": [
+            "Shifts",
+            "Mileage",
+            "Driving style"
+          ]
+        },
+        "passenger": {
+          "text": "Timetables, stops and safety of passenger transport.",
+          "tags": [
+            "Timetable",
+            "Stops",
+            "Speed"
+          ]
+        },
+        "municipal": {
+          "text": "Street cleaning, waste collection and city services under control.",
+          "tags": [
+            "Cleaning routes",
+            "Sensors",
+            "Reports"
+          ]
+        }
+      }
     },
     "cta": {
       "title": "Ready to see your fleet like this?",
@@ -260,6 +347,10 @@
     "successText": "Thank you! Our manager will contact you shortly.",
     "sendError": "We couldn't send your request. Please try again or write to us at",
     "close": "Close",
-    "consent": "By sending the form you agree to the <link>privacy policy</link>."
+    "consent": "By sending the form you agree to the <link>privacy policy</link>.",
+    "partner": {
+      "title": "Become a partner",
+      "subtitle": "Leave your details and we'll discuss how to make transport cheaper and more transparent together."
+    }
   }
 }

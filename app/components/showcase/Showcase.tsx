@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, type ReactNode } from "react";
 import {
   animate,
   motion,
@@ -13,7 +13,11 @@ import {
 } from "motion/react";
 import { useTranslations } from "next-intl";
 import {
+  Activity,
   Bell,
+  Cpu,
+  Layers,
+  Rocket,
   FileBarChart,
   Fuel,
   MapPinned,
@@ -23,64 +27,156 @@ import Hero from "./Hero";
 import { useDemoModal } from "../demo/DemoModal";
 import Telematics from "./Telematics";
 import IndustriesScroll from "./IndustriesScroll";
+import { industries } from "../industryData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /* ---------- Stats: numbers count up when they scroll into view ---------- */
 
-function Counter({ to }: { to: number }) {
+function Counter({
+  to,
+  delay,
+  start,
+  onProgress,
+}: {
+  to: number;
+  delay: number;
+  start: boolean;
+  onProgress: (v: number) => void;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!inView || !el) return;
+    if (!start || !el) return;
     if (reduce) {
       el.textContent = String(to);
+      onProgress(1);
       return;
     }
     const controls = animate(0, to, {
-      duration: 1.6,
-      ease,
+      delay,
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
       onUpdate: (v) => {
         el.textContent = String(Math.round(v));
+        onProgress(v / to);
       },
     });
     return () => controls.stop();
-  }, [inView, reduce, to]);
+  }, [start, reduce, to, delay, onProgress]);
 
-  return <span ref={ref}>0</span>;
+  return (
+    // the final value reserves the width, so digits don't jump while counting
+    <span className="inline-grid tabular-nums" aria-hidden>
+      <span className="invisible col-start-1 row-start-1">{to}</span>
+      <span ref={ref} className="col-start-1 row-start-1 text-right">
+        0
+      </span>
+    </span>
+  );
 }
 
-const stats = [
-  { key: "brands", value: 40, suffix: "+" },
-  { key: "industries", value: 9, suffix: "" },
-  { key: "monitoring", value: 24, suffix: "/7" },
-  { key: "steps", value: 3, suffix: "" },
-] as const;
+type Stat = {
+  key: "brands" | "industries" | "monitoring" | "steps";
+  Icon: LucideIcon;
+  value: number;
+  suffix?: string;
+  /** shown as is with a live dot instead of counting (24/7 is not a quantity) */
+  live?: string;
+};
+
+const stats: Stat[] = [
+  { key: "brands", Icon: Cpu, value: 40, suffix: "+" },
+  { key: "industries", Icon: Layers, value: industries.length },
+  { key: "monitoring", Icon: Activity, value: 24, live: "24/7" },
+  { key: "steps", Icon: Rocket, value: 3 },
+];
+
+function StatItem({ stat, index, start }: { stat: Stat; index: number; start: boolean }) {
+  const t = useTranslations("Showcase.stats");
+  const fill = useMotionValue(0);
+  const onProgress = useCallback((v: number) => fill.set(v), [fill]);
+  const { Icon, value, suffix, live } = stat;
+
+  useEffect(() => {
+    if (live && start) animate(fill, 1, { delay: index * 0.12, duration: 1.8, ease: [0.16, 1, 0.3, 1] });
+  }, [live, start, fill, index]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={start ? { opacity: 1, y: 0 } : undefined}
+      transition={{ delay: index * 0.12, duration: 0.7, ease }}
+      className={`group relative flex flex-col items-center border-white/10 px-4 py-8 text-center transition-colors hover:bg-white/[0.04] sm:px-6 lg:py-10 ${
+        index % 2 ? "border-l" : ""
+      } ${index < 2 ? "border-b lg:border-b-0" : ""} ${index === 2 ? "lg:border-l" : ""}`}
+    >
+      <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-brand/20 text-[#6fdca0] ring-1 ring-[#6fdca0]/20 transition-transform duration-300 group-hover:scale-110">
+        <Icon className="size-5" strokeWidth={1.8} aria-hidden />
+      </span>
+      <p
+        className="mt-5 font-play text-4xl font-bold leading-none lg:text-5xl"
+        aria-label={`${live ?? `${value}${suffix ?? ""}`} ${t(stat.key)}`}
+      >
+        <span className="bg-linear-to-b from-white to-[#8be8b6] bg-clip-text text-transparent">
+          {live ? (
+            <span aria-hidden className="relative">
+              {/* dot hangs left of the text so "24/7" stays centred like the other numbers */}
+              <span className="absolute top-1/2 -left-5 flex size-2.5 -translate-y-1/2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400" />
+              </span>
+              {live}
+            </span>
+          ) : (
+            <>
+              <Counter to={value} delay={index * 0.12} start={start} onProgress={onProgress} />
+              {suffix && <span aria-hidden>{suffix}</span>}
+            </>
+          )}
+        </span>
+      </p>
+      <p className="mt-3 max-w-[14rem] text-sm leading-snug text-white/60 sm:text-[15px]" aria-hidden>
+        {t(stat.key)}
+      </p>
+      {/* progress line that fills while the number counts up */}
+      <span className="mt-5 h-0.5 w-16 overflow-hidden rounded-full bg-white/10" aria-hidden>
+        <motion.span
+          className="block h-full origin-left rounded-full bg-[linear-gradient(90deg,#0F833F,#38e0a0)]"
+          style={{ scaleX: fill }}
+        />
+      </span>
+    </motion.div>
+  );
+}
 
 function Stats() {
-  const t = useTranslations("Showcase.stats");
+  const ref = useRef<HTMLDivElement>(null);
+  const start = useInView(ref, { once: true, amount: 0.5 });
+
   return (
-    <section className="relative z-10 bg-white">
+    <section className="relative z-10 bg-[#02150c]">
       <div className="container mx-auto px-5 lg:px-10">
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease }}
-          className="-mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-200 shadow-2xl shadow-brand/10 lg:grid-cols-4"
+          className="relative -mt-14 overflow-hidden rounded-3xl border border-white/10 bg-[#04331D]/60 shadow-[0_30px_80px_-30px_rgba(56,224,160,0.35)] backdrop-blur-xl"
         >
-          {stats.map(({ key, value, suffix }) => (
-            <div key={key} className="bg-white px-6 py-8 text-center">
-              <p className="font-play text-4xl font-bold text-brand lg:text-5xl">
-                <Counter to={value} />
-                {suffix}
-              </p>
-              <p className="mt-2 text-sm text-neutral-500">{t(key)}</p>
-            </div>
-          ))}
+          {/* soft light sweeping across the panel */}
+          <div
+            className="pointer-events-none absolute -top-24 left-1/2 h-48 w-2/3 -translate-x-1/2 rounded-full bg-[#38e0a0]/15 blur-3xl"
+            aria-hidden
+          />
+          <div className="relative grid grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, i) => (
+              <StatItem key={stat.key} stat={stat} index={i} start={start} />
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
@@ -236,7 +332,7 @@ function Cta() {
         >
           <button
             type="button"
-            onClick={demo.open}
+            onClick={() => demo.open()}
             className="inline-flex items-center justify-center rounded-full bg-white px-10 py-4 text-base font-bold text-brand shadow-[0_0_60px_-10px] shadow-brand transition-transform hover:scale-105"
           >
             {tHeader("getDemo")}

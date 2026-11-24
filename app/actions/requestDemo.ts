@@ -3,9 +3,11 @@
 import { sendDemoRequest } from "@/lib/demoEmail";
 import {
   DEMO_FIELDS,
+  REQUEST_KINDS,
   validateDemoRequest,
   type DemoRequest,
   type DemoState,
+  type RequestKind,
 } from "@/lib/demoRequest";
 
 export async function requestDemo(
@@ -23,7 +25,11 @@ export async function requestDemo(
   if (Object.keys(fields).length) return { status: "error", fields, values };
 
   try {
-    await sendDemoRequest(values);
+    const raw = String(formData.get("kind") ?? "");
+    const kind: RequestKind = REQUEST_KINDS.includes(raw as RequestKind)
+      ? (raw as RequestKind)
+      : "demo";
+    await sendDemoRequest(values, kind);
     return { status: "ok" };
   } catch (err) {
     console.error("[requestDemo] email failed", err);

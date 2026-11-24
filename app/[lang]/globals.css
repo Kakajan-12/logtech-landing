@@ -99,3 +99,55 @@ body {
 body:has(dialog[open]) {
   overflow: hidden;
 }
+
+/* "3 steps" illustrations */
+@keyframes step-flow {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(var(--flow, 96px));
+    opacity: 0;
+  }
+}
+@keyframes step-wave {
+  from {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .step-anim {
+    animation: none !important;
+  }
+}
+
+/* partner logo marquee: the track holds the list twice and slides by half */
+@keyframes logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.logo-marquee {
+  animation: logo-marquee var(--marquee-duration, 40s) linear infinite;
+}
+.logo-marquee[data-reverse] {
+  animation-direction: reverse;
+}
+.logo-row:hover .logo-marquee {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee {
+    animation: none;
+  }
+}

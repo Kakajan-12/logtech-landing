@@ -53,7 +53,9 @@
         "title": "Gözegçilik we mobil",
         "description": "Möhüm onlaýn platformadan ähli awtoulagy gözegçilik ediň, seljeriş ediň we optimizasiýa ediň."
       }
-    }
+    },
+    "connected": "Birikdirildi",
+    "cta": "Demodan başlaň"
   },
   "BePartner": {
     "title": "Hyzmatdaş boluň",
@@ -64,10 +66,13 @@
       "costs": "Garaşylmadyk çykdajylary we işläp çykarylmalary azaltmak"
     },
     "outro": "Bize goşulyň — bilelikde ulagy işewürlik üçin arzanlaşdyryp, has aç-açan ederis.",
-    "imageAlt": "Logistika, GPS gözegçilik we hyzmatdaşlyk"
+    "imageAlt": "Logistika, GPS gözegçilik we hyzmatdaşlyk",
+    "eyebrow": "Hyzmatdaşlyk",
+    "cta": "Hyzmatdaş bolmak"
   },
   "Partners": {
-    "title": "Hyzmatdaşlarymyz"
+    "title": "Hyzmatdaşlarymyz",
+    "eyebrow": "Bize ynanýarlar"
   },
   "Footer": {
     "tagline": "Häzirki zaman işewürligi üçin doly GPS awtoulag dolandyryş çözgüdi",
@@ -198,7 +203,11 @@
       "engine": "Hereketlendiriji",
       "engineValue": "Işleýär",
       "hint": "Ýük maşynyny aýlamak üçin aşak süýşüriň",
-      "truckLabel": "GPS yzarlaýjyly ýük maşynynyň 3D modeli"
+      "truckLabel": "GPS yzarlaýjyly ýük maşynynyň 3D modeli",
+      "temp": "Tirkegiň temperaturasy",
+      "tempValue": "−18 °C",
+      "doors": "Tirkegiň gapylary",
+      "doorsValue": "Ýapyk"
     },
     "features": {
       "title": "Doly gözegçilik üçin döredildi",
@@ -223,7 +232,85 @@
     },
     "industries": {
       "eyebrow": "Pudaklar",
-      "title": "Islendik awtopark üçin bir platforma"
+      "title": "Islendik awtopark üçin bir platforma",
+      "counter": "/",
+      "moreTitle": "Öz pudagyňyzy tapmadyňyzmy?",
+      "moreText": "Awtoparkyňyz barada aýdyň — enjamlary we hasabatlary siziň işiňize görä saýlarys.",
+      "moreCta": "Taslamany ara alyp maslahatlaşmak",
+      "items": {
+        "transport": {
+          "text": "Tutuş awtoparkyň ugurlary, reýsleri we durmalary bir ýerde.",
+          "tags": [
+            "Ugurlar",
+            "Ýangyç",
+            "Durmalar"
+          ]
+        },
+        "construction": {
+          "text": "Ýörite tehnikanyň motor sagatlary, işi we durmalary.",
+          "tags": [
+            "Motor sagatlary",
+            "Geozolar",
+            "Durmalar"
+          ]
+        },
+        "agriculture": {
+          "text": "Meýdan işleri, işlenen meýdan we ýangyç sarp edilişi.",
+          "tags": [
+            "Meýdan",
+            "Meýdan ýollary",
+            "Ýangyç"
+          ]
+        },
+        "courier": {
+          "text": "Her eltip berme wagtynda: ugur, duralgalar we ýoldaky wagt.",
+          "tags": [
+            "Duralgalar",
+            "Geliş wagty",
+            "Ugur"
+          ]
+        },
+        "leasing": {
+          "text": "Tehnika nirede, nähili ulanylýar we näçe ýol geçdi.",
+          "tags": [
+            "Ýerleşişi",
+            "Geçen ýoly",
+            "Sürüş usuly"
+          ]
+        },
+        "trailers": {
+          "text": "Tirkegiň ýerleşişi, ýüküň temperaturasy we gapylaryň açylmagy.",
+          "tags": [
+            "Temperatura",
+            "Gapylar",
+            "Aýrylma"
+          ]
+        },
+        "taxi": {
+          "text": "Ulaglaryň ýüklenişi, geçen ýoly we her sürüjiniň sürüş usuly.",
+          "tags": [
+            "Smenalar",
+            "Geçen ýoly",
+            "Sürüş usuly"
+          ]
+        },
+        "passenger": {
+          "text": "Ýolagçy gatnawlarynyň tertibi, duralgalary we howpsuzlygy.",
+          "tags": [
+            "Tertip",
+            "Duralgalar",
+            "Tizlik"
+          ]
+        },
+        "municipal": {
+          "text": "Köçe arassalamak, zibil äkitmek we kommunal hyzmatlar gözegçilikde.",
+          "tags": [
+            "Arassalaýyş ugurlary",
+            "Datçikler",
+            "Hasabatlar"
+          ]
+        }
+      }
     },
     "cta": {
       "title": "Awtoparkyňyzy şeýle görmek isleýärsiňizmi?",
@@ -260,6 +347,10 @@
     "successText": "Sag boluň! Menejerimiz ýakyn wagtda siziň bilen habarlaşar.",
     "sendError": "Arzany iberip bolmady. Gaýtadan synanyşyň ýa-da bize ýazyň:",
     "close": "Ýapmak",
-    "consent": "Formany ibermek bilen, siz <link>gizlinlik syýasatyna</link> razylyk berýärsiňiz."
+    "consent": "Formany ibermek bilen, siz <link>gizlinlik syýasatyna</link> razylyk berýärsiňiz.",
+    "partner": {
+      "title": "Hyzmatdaş bolmak",
+      "subtitle": "Maglumatlaryňyzy galdyryň — ulaglary bilelikde arzan we aýdyň etmegi ara alyp maslahatlaşarys."
+    }
   }
 }
