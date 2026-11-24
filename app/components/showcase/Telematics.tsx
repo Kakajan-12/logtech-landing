@@ -61,6 +61,7 @@ export default function Telematics() {
   return (
     <section
       id="sc-telematics"
+      data-header-theme="dark"
       ref={section}
       className="relative h-[320vh] bg-[#02150c] text-white"
     >

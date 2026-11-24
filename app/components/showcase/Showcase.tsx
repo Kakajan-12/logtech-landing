@@ -157,7 +157,7 @@ function Stats() {
   const start = useInView(ref, { once: true, amount: 0.5 });
 
   return (
-    <section className="relative z-10 bg-[#02150c]">
+    <section data-header-theme="dark" className="relative z-10 bg-[#02150c]">
       <div className="container mx-auto px-5 lg:px-10">
         <motion.div
           ref={ref}
@@ -291,7 +291,10 @@ function Cta() {
   const tHeader = useTranslations("Header");
   const demo = useDemoModal();
   return (
-    <section className="relative isolate overflow-hidden bg-[#02150c] py-28 text-white lg:py-40">
+    <section
+      data-header-theme="dark"
+      className="relative isolate overflow-hidden bg-[#02150c] py-28 text-white lg:py-40"
+    >
       <motion.div
         className="absolute -left-32 top-0 -z-10 size-[32rem] rounded-full bg-brand/50 blur-[120px]"
         animate={{ x: [0, 120, -40, 0], y: [0, 60, -40, 0] }}

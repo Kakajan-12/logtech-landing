@@ -27,6 +27,9 @@ export default function Header() {
   const [hash, setHash] = useState("");
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  // colour scheme of the section right under the header ("dark" sections are marked)
+  const [overDark, setOverDark] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
@@ -66,13 +69,36 @@ export default function Header() {
     return () => cancelAnimationFrame(frame);
   }, [hash]);
 
-  // Compact header once the page is scrolled
+  // Compact header once the page is scrolled, and match the section underneath:
+  // sections with data-header-theme="dark" switch the header to its dark look.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setScrolled(window.scrollY > 12);
+      const probe = (headerRef.current?.getBoundingClientRect().bottom ?? 0) + 1;
+      const dark = [...document.querySelectorAll<HTMLElement>("[data-header-theme=dark]")].some(
+        (el) => {
+          const r = el.getBoundingClientRect();
+          return r.top <= probe && r.bottom > probe;
+        },
+      );
+      setOverDark(dark);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+  // the open mobile menu is a white panel, so keep the bar light with it
+  const dark = overDark && !menuOpen;
 
   // Scroll-spy: highlight the menu item of the section in the middle of the screen
   useEffect(() => {
@@ -145,6 +171,8 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
+      data-theme={dark ? "dark" : "light"}
       className={`sticky top-0 z-50 transition-transform duration-300 ${
         scrolled ? "-translate-y-9" : ""
       }`}
@@ -179,10 +207,14 @@ export default function Header() {
       </div>
 
       <div
-        className={`relative border-b backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-300 ${
-          scrolled || menuOpen
-            ? "border-black/5 bg-white/95 shadow-[0_8px_30px_-12px_rgba(4,51,29,0.25)]"
-            : "border-transparent bg-white"
+        className={`relative border-b backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-500 ${
+          dark
+            ? scrolled
+              ? "border-white/10 bg-[#02150c]/75 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+              : "border-transparent bg-[#02150c]"
+            : scrolled || menuOpen
+              ? "border-black/5 bg-white/95 shadow-[0_8px_30px_-12px_rgba(4,51,29,0.25)]"
+              : "border-transparent bg-white"
         }`}
       >
         <div
@@ -202,7 +234,9 @@ export default function Header() {
               alt=""
               width={155}
               height={50}
-              className="h-9 w-auto sm:h-10"
+              className={`h-9 w-auto transition-[filter] duration-500 sm:h-10 ${
+                dark ? "brightness-0 invert" : ""
+              }`}
               style={{ width: "auto" }}
               priority
             />
@@ -216,18 +250,35 @@ export default function Header() {
                   key={key}
                   href={`/#${key}`}
                   aria-current={on ? "location" : undefined}
-                  className={`group relative rounded-full px-4 py-2 font-jost text-[15px] font-medium transition-colors ${
-                    on ? "text-brand" : "text-neutral-800 hover:text-brand"
+                  className={`group relative rounded-full px-4 py-2 font-jost text-[15px] font-medium transition-colors duration-300 ${
+                    dark
+                      ? on
+                        ? "text-[#6fdca0]"
+                        : "text-white/75 hover:text-white"
+                      : on
+                        ? "text-brand"
+                        : "text-neutral-800 hover:text-brand"
                   }`}
                   onClick={goToSection(key)}
                 >
                   {t(`nav.${key}`)}
+                  {/* faint underline on hover; the active one slides between items */}
                   <span
-                    className={`absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-brand transition-transform duration-300 ${
-                      on ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    className={`absolute inset-x-4 -bottom-0.5 h-0.5 origin-left scale-x-0 rounded-full transition-transform duration-300 group-hover:scale-x-100 ${
+                      dark ? "bg-white/30" : "bg-brand/30"
                     }`}
                     aria-hidden
                   />
+                  {on && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className={`absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full ${
+                        dark ? "bg-[#6fdca0]" : "bg-brand"
+                      }`}
+                      aria-hidden
+                    />
+                  )}
                 </Link>
               );
             })}
@@ -237,7 +288,11 @@ export default function Header() {
             <div ref={langRef} className="relative">
               <button
                 type="button"
-                className="inline-flex h-10 items-center gap-1.5 rounded-full px-3 font-jost text-sm font-bold text-neutral-800 transition-colors hover:bg-brand/10 hover:text-brand"
+                className={`inline-flex h-10 items-center gap-1.5 rounded-full px-3 font-jost text-sm font-bold transition-colors duration-300 ${
+                  dark
+                    ? "text-white/85 hover:bg-white/10 hover:text-white"
+                    : "text-neutral-800 hover:bg-brand/10 hover:text-brand"
+                }`}
                 aria-expanded={langOpen}
                 aria-haspopup="listbox"
                 aria-label={t("language")}
@@ -304,7 +359,9 @@ export default function Header() {
 
             <button
               type="button"
-              className="inline-flex size-10 items-center justify-center rounded-full text-neutral-900 transition-colors hover:bg-brand/10 lg:hidden"
+              className={`inline-flex size-10 items-center justify-center rounded-full transition-colors duration-300 lg:hidden ${
+                dark ? "text-white hover:bg-white/10" : "text-neutral-900 hover:bg-brand/10"
+              }`}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? t("closeMenu") : t("openMenu")}

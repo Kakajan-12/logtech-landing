@@ -45,6 +45,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
+      data-header-theme="dark"
       className="relative isolate flex min-h-[calc(100svh-7rem)] items-center overflow-hidden bg-[#02150c] text-white"
     >
       {/* glow behind the globe */}

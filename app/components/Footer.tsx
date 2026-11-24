@@ -44,6 +44,7 @@ export default function Footer() {
   return (
     <footer
       id="contacts"
+      data-header-theme="dark"
       className="relative isolate mt-auto scroll-mt-16 overflow-hidden bg-[#02150c] text-white"
     >
       {/* texture + soft brand glow + a thin light line on top */}
